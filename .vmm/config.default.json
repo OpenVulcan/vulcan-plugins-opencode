@@ -1,0 +1,17 @@
+{
+  "project_id": "",
+  "user_id": "",
+  "language": "en",
+  "notification_surface_mode": "auto",
+  "vulcan_host_target": "${VULCAN_HOST_GRPC_TARGET}",
+  "grpc_api_key": "${VMM_GRPC_API_KEY}",
+  "grpc_handshake_timeout_ms": 1500,
+  "grpc_receive_timeout_ms": 30000,
+  "grpc_keepalive_time_ms": 300000,
+  "grpc_keepalive_timeout_ms": 20000,
+  "grpc_keepalive_permit_without_calls": 0,
+  "visible_memory_injection": false,
+  "implicit_memory_turns": 5,
+  "profile_refresh_turns": 5,
+  "session_compact_recall": true
+}

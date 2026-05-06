@@ -1,0 +1,10 @@
+node_modules/
+dist/
+logs/
+*.log
+*.zip
+debug-workspace/
+.qwen
+.claude
+docs/plan
+docs/completed

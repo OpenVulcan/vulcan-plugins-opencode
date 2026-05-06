@@ -1,0 +1,23 @@
+{
+  "name": "vmm-opencode-plugins",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "tsc --noEmit",
+    "clean": "node -e \"require('node:fs').rmSync('dist', { recursive: true, force: true })\"",
+    "prebuild": "npm run clean",
+    "build": "tsc -p tsconfig.json"
+  },
+  "devDependencies": {
+    "@opentui/core": "^0.1.97",
+    "@opentui/solid": "^0.1.97",
+    "@types/node": "^25.5.0",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@grpc/grpc-js": "^1.14.3",
+    "@grpc/proto-loader": "^0.8.0",
+    "@opencode-ai/plugin": "^1.4.0"
+  }
+}
