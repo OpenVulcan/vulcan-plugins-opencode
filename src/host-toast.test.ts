@@ -15,6 +15,10 @@ import {
   type HostToastClient,
 } from "./host-toast.js"
 
+// Resolve the active checkout so host request fixtures do not depend on one developer's drive layout.
+// 使用当前检出目录构造宿主请求样例，避免依赖某位开发者的盘符布局。
+const testDirectory = process.cwd()
+
 /**
  * Build one minimal host toast input used by compatibility tests.
  * 构造兼容性测试复用的最小宿主 toast 输入。
@@ -26,7 +30,7 @@ import {
  */
 function createToastInput() {
   return {
-    directory: "D:/projects/vulcan-plugins-opencode",
+    directory: testDirectory,
     message: "toast message",
     variant: "warning" as const,
     duration: 3000,

@@ -29,9 +29,13 @@ import {
 } from "./session-event-dedupe.js"
 import { ROOT_SESSION_REGISTRY_TTL_MS } from "./root-session-registry.js"
 
+// Resolve the active checkout so runtime-scope tests remain independent of one developer's machine path.
+// 使用当前检出目录作为作用域样例，避免测试绑定到某位开发者的本机路径。
+const testDirectory = process.cwd()
+
 test("getPluginRuntimeScope reuses the same scope for the same directory", () => {
-  const first = getPluginRuntimeScope("D:/projects/vulcan-plugins-opencode")
-  const second = getPluginRuntimeScope("D:/projects/vulcan-plugins-opencode")
+  const first = getPluginRuntimeScope(testDirectory)
+  const second = getPluginRuntimeScope(testDirectory)
 
   assert.equal(first.rootSessionRegistry, second.rootSessionRegistry)
   assert.equal(first.sessionEventDedupe, second.sessionEventDedupe)

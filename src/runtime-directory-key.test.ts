@@ -16,16 +16,16 @@ import { normalizeRuntimeDirectoryKey } from "./runtime-directory-key.js"
 
 test("normalizeRuntimeDirectoryKey canonicalizes equivalent Windows-style paths", () => {
   const left = normalizeRuntimeDirectoryKey({
-    directory: "D:\\Projects\\vulcan-plugins-opencode\\",
+    directory: "D:\\Projects\\Workspace\\",
     platform: "win32",
   })
   const right = normalizeRuntimeDirectoryKey({
-    directory: "d:/projects/vulcan-plugins-opencode",
+    directory: "d:/projects/workspace",
     platform: "win32",
   })
 
   assert.equal(left, right)
-  assert.equal(left, "d:/projects/vulcan-plugins-opencode")
+  assert.equal(left, "d:/projects/workspace")
 })
 
 test("normalizeRuntimeDirectoryKey preserves case-sensitive POSIX identity", () => {

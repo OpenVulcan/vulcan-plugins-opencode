@@ -15,6 +15,10 @@ import test from "node:test"
 
 import { admitRootSession, probeRootSession } from "./root-session-probe.js"
 
+// Use the active checkout as the directory sent to mocked host requests.
+// 将当前检出目录作为传给模拟宿主请求的目录。
+const testDirectory = process.cwd()
+
 test("probeRootSession prefers the known-root cache before calling session.get", async () => {
   let getCalls = 0
   const result = await probeRootSession({
@@ -30,7 +34,7 @@ test("probeRootSession prefers the known-root cache before calling session.get",
         },
       },
     },
-    directory: "D:/projects/vulcan-plugins-opencode",
+    directory: testDirectory,
     sessionID: "ses_root",
     knownRootSessionIDs: new Set(["ses_root"]),
   })
@@ -54,7 +58,7 @@ test("probeRootSession uses session.get to confirm a root session on cache miss"
         }),
       },
     },
-    directory: "D:/projects/vulcan-plugins-opencode",
+    directory: testDirectory,
     sessionID: "ses_root",
     knownRootSessionIDs: new Set<string>(),
   })
@@ -79,7 +83,7 @@ test("probeRootSession marks sessions with parentID as non-root", async () => {
         }),
       },
     },
-    directory: "D:/projects/vulcan-plugins-opencode",
+    directory: testDirectory,
     sessionID: "ses_child",
     knownRootSessionIDs: new Set<string>(),
   })
@@ -101,7 +105,7 @@ test("probeRootSession falls back to unknown when neither cache nor session.get 
         },
       },
     },
-    directory: "D:/projects/vulcan-plugins-opencode",
+    directory: testDirectory,
     sessionID: "ses_unknown",
     knownRootSessionIDs: new Set<string>(),
   })
@@ -121,7 +125,7 @@ test("probeRootSession accepts a matching session.created event hint when sessio
         },
       },
     },
-    directory: "D:/projects/vulcan-plugins-opencode",
+    directory: testDirectory,
     sessionID: "ses_root",
     knownRootSessionIDs: new Set<string>(),
     eventHint: {
@@ -147,7 +151,7 @@ test("probeRootSession accepts a matching session.created event hint when sessio
         }),
       },
     },
-    directory: "D:/projects/vulcan-plugins-opencode",
+    directory: testDirectory,
     sessionID: "ses_root",
     knownRootSessionIDs: new Set<string>(),
     eventHint: {
@@ -173,7 +177,7 @@ test("probeRootSession treats session.created hints with parentID as non-root", 
         },
       },
     },
-    directory: "D:/projects/vulcan-plugins-opencode",
+    directory: testDirectory,
     sessionID: "ses_child",
     knownRootSessionIDs: new Set<string>(),
     eventHint: {
@@ -200,7 +204,7 @@ test("probeRootSession keeps malformed session.get payloads in unknown state", a
         }),
       },
     },
-    directory: "D:/projects/vulcan-plugins-opencode",
+    directory: testDirectory,
     sessionID: "ses_unknown",
     knownRootSessionIDs: new Set<string>(),
   })
@@ -224,7 +228,7 @@ test("probeRootSession keeps mismatched session.get payloads in unknown state", 
         }),
       },
     },
-    directory: "D:/projects/vulcan-plugins-opencode",
+    directory: testDirectory,
     sessionID: "ses_expected",
     knownRootSessionIDs: new Set<string>(),
   })
@@ -248,7 +252,7 @@ test("probeRootSession keeps conflicting session.get ids above session.created e
         }),
       },
     },
-    directory: "D:/projects/vulcan-plugins-opencode",
+    directory: testDirectory,
     sessionID: "ses_expected",
     knownRootSessionIDs: new Set<string>(),
     eventHint: {
@@ -282,7 +286,7 @@ test("admitRootSession caches a confirmed root session after one successful prob
         },
       },
     },
-    directory: "D:/projects/vulcan-plugins-opencode",
+    directory: testDirectory,
     sessionID: "ses_root",
     knownRootSessionIDs,
   })
@@ -301,7 +305,7 @@ test("admitRootSession caches a confirmed root session after one successful prob
         },
       },
     },
-    directory: "D:/projects/vulcan-plugins-opencode",
+    directory: testDirectory,
     sessionID: "ses_root",
     knownRootSessionIDs,
   })
@@ -335,7 +339,7 @@ test("admitRootSession caches a root session proven by session.created event hin
         },
       },
     },
-    directory: "D:/projects/vulcan-plugins-opencode",
+    directory: testDirectory,
     sessionID: "ses_root",
     knownRootSessionIDs,
     eventHint: {
@@ -352,7 +356,7 @@ test("admitRootSession caches a root session proven by session.created event hin
         },
       },
     },
-    directory: "D:/projects/vulcan-plugins-opencode",
+    directory: testDirectory,
     sessionID: "ses_root",
     knownRootSessionIDs,
   })
@@ -385,7 +389,7 @@ test("admitRootSession caches a root session when session.get is inconclusive bu
         }),
       },
     },
-    directory: "D:/projects/vulcan-plugins-opencode",
+    directory: testDirectory,
     sessionID: "ses_root",
     knownRootSessionIDs,
     eventHint: {
@@ -418,7 +422,7 @@ test("admitRootSession refuses to cache unknown sessions", async () => {
         }),
       },
     },
-    directory: "D:/projects/vulcan-plugins-opencode",
+    directory: testDirectory,
     sessionID: "ses_unknown",
     knownRootSessionIDs,
   })
