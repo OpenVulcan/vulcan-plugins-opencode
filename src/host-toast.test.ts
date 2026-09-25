@@ -26,7 +26,7 @@ import {
  */
 function createToastInput() {
   return {
-    directory: "D:/projects/VmmOpenCodePlugins",
+    directory: "D:/projects/vulcan-plugins-opencode",
     message: "toast message",
     variant: "warning" as const,
     duration: 3000,

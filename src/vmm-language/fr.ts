@@ -36,13 +36,13 @@ export const VMM_LANGUAGE_CATALOG_FR = {
     recall_complete_injected: "La revue de l'historique est terminée. {count} éléments mémoire ont été injectés.",
     missing_vulcan_host_target:
       "vulcan_host_target n'est pas encore configuré. La récupération et l'écriture sont actuellement ignorées.",
-    binding_repair_user: "Rouvre /vmm-setting et mets à jour l'association utilisateur.",
-    binding_repair_project: "Rouvre /vmm-setting et mets à jour l'association projet.",
-    binding_repair_both: "Rouvre /vmm-setting et mets à jour les associations utilisateur et projet.",
+    binding_repair_user: "Rouvre /vulcan-setting et mets à jour l'association utilisateur.",
+    binding_repair_project: "Rouvre /vulcan-setting et mets à jour l'association projet.",
+    binding_repair_both: "Rouvre /vulcan-setting et mets à jour les associations utilisateur et projet.",
     binding_repair_generic: "Vérifie la configuration VMM actuelle.",
     language_list_toast: "Les langues VMM prises en charge ont été chargées.",
     language_missing: "Valeur de langue manquante. Utilise un code pris en charge, ou inherit/default pour effacer la surcharge actuelle.",
-    language_invalid: "Valeur de langue non prise en charge : {value}. Ouvre /vmm-setting pour choisir une langue prise en charge.",
+    language_invalid: "Valeur de langue non prise en charge : {value}. Ouvre /vulcan-setting pour choisir une langue prise en charge.",
     language_restart_notice: "Redémarre OpenCode pour actualiser les descriptions de commande dans la palette.",
     memory_context_handshake_timeout: "Le délai de connexion de récupération mémoire a expiré. L'injection d'historique a été ignorée pour ce tour.",
     memory_context_receive_timeout: "Le délai de réponse de récupération mémoire a expiré. L'injection d'historique a été ignorée pour ce tour.",
@@ -78,3 +78,4 @@ Cela provient généralement d'un conflit de configuration de port et il faut mo
     final_check_notice: `## Tu dois strictement respecter : Discipline d'usage mémoire et de traçabilité VMM (Vulcan Memory Mesh)`,
   },
 } satisfies VmmLanguageCatalog
+

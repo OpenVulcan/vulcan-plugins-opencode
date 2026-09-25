@@ -27,7 +27,7 @@
 1. gRPC unary 传输封装
 2. `PreCheck` / `PostAction` 业务链迁移
 3. `ListProjects / ResolveProject / EnsureProject / DeleteProject / MigrateProject / ResolveUser / ListUsers / DeleteUser` 管理 RPC 接入
-4. `/vmm-setting` TUI 控制中心落地
+4. `/vulcan-setting` TUI 控制面板落地
 5. outbox 顺序重放保留
 6. 多语言文案支持落地
 7. TUI 管理面改为通过 Node bridge 间接调用管理 RPC，不再在 TUI 宿主里直接加载 gRPC 运行时
@@ -101,7 +101,7 @@
 - `chat.message` 检索跳过
 - 事件侧记忆状态更新跳过
 - finalize 写回跳过
-- `/vmm-setting` 仍然可用
+- `/vulcan-setting` 仍然可用
 
 这是刻意保留的安全停用态。
 
@@ -122,7 +122,7 @@
 1. `language` 未设置时默认英语
 2. `language` 设置为未知值时，运行时会 fallback 到英语
 3. 运行时 toast、system 提示、显式记忆包裹文案会立即切换
-4. `/vmm-setting` 入口描述在启动时注册，因此修改语言后需要重启 OpenCode 才能刷新描述
+4. `/vulcan-setting` 入口描述在启动时注册，因此修改语言后需要重启 OpenCode 才能刷新描述
 
 ### 4.5 完整画像 bundle 规则
 
@@ -150,7 +150,7 @@
 - `ListUsers`
 - `DeleteUser`
 
-这些 RPC 只用于 `/vmm-setting` 管理面，不会进入普通对话记忆 payload。
+这些 RPC 只用于 `/vulcan-setting` 管理面，不会进入普通对话记忆 payload。
 
 ### 5.2 画像 bundle RPC
 
@@ -168,7 +168,7 @@
 
 当前结论：
 
-- `/vmm-setting` 对应的 TUI 管理页不再直接调用 `src/vmm-grpc.ts`
+- `/vulcan-setting` 对应的 TUI 管理页不再直接调用 `src/vmm-grpc.ts`
 - TUI 页面会先调用 `src/vmm-tui-grpc-bridge.ts`
 - bridge 再用独立 `node` 子进程执行 `dist/vmm-tui-grpc-bridge-worker.js`
 - worker 内部才会实际调用 `src/vmm-grpc.ts`
@@ -267,11 +267,11 @@
 
 当前公开入口只保留：
 
-- `/vmm-setting`
+- `/vulcan-setting`
 
 ### 6.2 管理交互
 
-绑定、语言切换、画像查看/写入、项目迁移/删除、记忆模式切换都已经迁入 `/vmm-setting` TUI 控制中心。
+绑定、语言切换、画像查看/写入、项目迁移/删除、记忆模式切换都已经迁入 `/vulcan-setting` TUI 控制面板。
 
 这意味着：
 
@@ -286,7 +286,7 @@
 现在的隔离方式是：
 
 1. 普通记忆链只处理真实聊天轮次
-2. 管理交互留在 `/vmm-setting` TUI 内部完成
+2. 管理交互留在 `/vulcan-setting` TUI 内部完成
 3. 显式记忆包裹仍会在文本清洗阶段被剥离，避免展示层包裹回流
 4. 完整画像 bundle 通过隐藏 system 注入进入普通对话链，不经 TUI 管理面中转
 
@@ -314,7 +314,7 @@
 推荐按下面顺序联调：
 
 1. 配置好 `grpc_target`
-2. 通过 `/vmm-setting` 打开用户/项目管理页，确认管理 RPC 可通
+2. 通过 `/vulcan-setting` 打开用户/项目管理页，确认管理 RPC 可通
 3. 绑定有效 `project_id` 与 `user_id`
 4. 验证首页底部状态能正确反映当前生效配置
 5. 触发一次普通对话，确认 `PreCheck` 与 `PostAction` 均能到达后端
@@ -325,3 +325,5 @@
 ## 10. 当前边界
 
 这份 handoff 只描述“当前插件实现已经是什么”，不再描述旧版 HTTP JSON 集成，也不再描述旧的 `space/team/project/user` 客户端寻址模型。
+
+

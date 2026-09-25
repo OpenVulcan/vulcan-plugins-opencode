@@ -37,7 +37,7 @@ const LUASKILLS_CLIENT_NAME = "opencode"
  * Plugin client version marker used for LuaSkills diagnostics.
  * LuaSkills 诊断使用的插件客户端版本标记。
  */
-const LUASKILLS_CLIENT_VERSION = "vmm-opencode-plugin"
+const LUASKILLS_CLIENT_VERSION = "vulcan-plugins-opencode"
 
 /**
  * Extra notice appended after lifecycle operations that can change tool ids.

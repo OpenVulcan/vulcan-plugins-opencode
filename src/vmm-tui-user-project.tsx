@@ -40,7 +40,12 @@ import {
   VMM_TUI_COLOR_MUTED,
   VMM_TUI_COLOR_ROW_SELECTED_BORDER,
   VMM_TUI_COLOR_SURFACE,
+  VMM_TUI_PANEL_HEADER_HEIGHT,
+  VMM_TUI_PANEL_OUTER_GAP,
+  VMM_TUI_PANEL_VERTICAL_PADDING,
   VMM_TUI_COLOR_TITLE,
+  VMM_TUI_OVERLAY_PANEL_HEIGHT,
+  VMM_TUI_OVERLAY_PANEL_WIDTH,
   VmmCompactListRow,
   VmmScrollColumn,
   buildVmmRowRenderableId,
@@ -793,17 +798,17 @@ export const VmmUserManagerOverlay = (props: {
         }}
       >
         <box
-          width="78%"
-          height="78%"
+          width={VMM_TUI_OVERLAY_PANEL_WIDTH}
+          height={VMM_TUI_OVERLAY_PANEL_HEIGHT}
           backgroundColor={VMM_TUI_COLOR_SURFACE}
           border
           borderColor={VMM_TUI_COLOR_BORDER}
           flexDirection="column"
-          paddingTop={1}
-          paddingBottom={1}
+          paddingTop={VMM_TUI_PANEL_VERTICAL_PADDING}
+          paddingBottom={VMM_TUI_PANEL_VERTICAL_PADDING}
           paddingLeft={1}
           paddingRight={1}
-          gap={1}
+          gap={VMM_TUI_PANEL_OUTER_GAP}
         >
           {/**
            * Keep the modal header visually aligned with the launcher styling
@@ -813,7 +818,7 @@ export const VmmUserManagerOverlay = (props: {
            */}
           <box
             width="100%"
-            height={5}
+            height={VMM_TUI_PANEL_HEADER_HEIGHT}
             backgroundColor="transparent"
             flexDirection="column"
             justifyContent="center"
@@ -876,7 +881,7 @@ export const VmmUserManagerOverlay = (props: {
             backgroundColor="transparent"
             flexDirection="column"
             padding={1}
-            gap={1}
+            gap={VMM_TUI_PANEL_OUTER_GAP}
           >
             <VmmScrollColumn
               selectedChildId={buildVmmRowRenderableId("user-manager", selectedId())}
@@ -2018,17 +2023,17 @@ export const VmmProjectManagerOverlay = (props: {
         }}
       >
         <box
-          width="78%"
-          height="78%"
+          width={VMM_TUI_OVERLAY_PANEL_WIDTH}
+          height={VMM_TUI_OVERLAY_PANEL_HEIGHT}
           backgroundColor={VMM_TUI_COLOR_SURFACE}
           border
           borderColor={VMM_TUI_COLOR_BORDER}
           flexDirection="column"
-          paddingTop={1}
-          paddingBottom={1}
+          paddingTop={VMM_TUI_PANEL_VERTICAL_PADDING}
+          paddingBottom={VMM_TUI_PANEL_VERTICAL_PADDING}
           paddingLeft={1}
           paddingRight={1}
-          gap={1}
+          gap={VMM_TUI_PANEL_OUTER_GAP}
         >
           {/**
            * Keep the modal header visually aligned with the launcher styling.
@@ -2036,7 +2041,7 @@ export const VmmProjectManagerOverlay = (props: {
            */}
           <box
             width="100%"
-            height={5}
+            height={VMM_TUI_PANEL_HEADER_HEIGHT}
             backgroundColor="transparent"
             flexDirection="column"
             justifyContent="center"
@@ -2095,7 +2100,7 @@ export const VmmProjectManagerOverlay = (props: {
             backgroundColor="transparent"
             flexDirection="column"
             padding={1}
-            gap={1}
+            gap={VMM_TUI_PANEL_OUTER_GAP}
           >
             <VmmScrollColumn
               selectedChildId={buildVmmRowRenderableId("project-manager", selectedId())}

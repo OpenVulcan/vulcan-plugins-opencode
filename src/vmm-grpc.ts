@@ -326,6 +326,7 @@ const VMM_SERVICE_METHOD_APPLY_PROFILE_INSTRUCTION = "vmm.v1.VMMService/ApplyPro
 const VMM_SERVICE_METHOD_SEARCH_MEMORY_EVENTS = "vmm.v1.VMMService/SearchMemoryEvents"
 const VMM_SERVICE_METHOD_GET_TURN_DETAILS = "vmm.v1.VMMService/GetTurnDetails"
 const VMM_SERVICE_METHOD_WRITE_MEMORIES = "vmm.v1.VMMService/WriteMemories"
+const VMM_SERVICE_METHOD_DELETE_MEMORIES = "vmm.v1.VMMService/DeleteMemories"
 const VMM_SERVICE_METHOD_CHAT_COMPACT = "vmm.v1.VMMService/ChatCompact"
 const VMM_SERVICE_METHOD_PRE_CHECK = "vmm.v1.VMMService/PreCheck"
 const VMM_SERVICE_METHOD_POST_ACTION = "vmm.v1.VMMService/PostAction"
@@ -577,6 +578,7 @@ export type VmmGrpcProfileTarget =
   | "PROFILE_TARGET_PROJECT"
   | "PROFILE_TARGET_TEAM"
   | "PROFILE_TARGET_SPACE"
+  | "PROFILE_TARGET_ALL"
 
 /**
  * Profile node source enum names returned by the VMM profile surface.
@@ -927,6 +929,34 @@ export type VmmGrpcWriteMemoriesResponse = {
 }
 
 /**
+ * Direct memory-delete request understood by the transport layer.
+ * 传输层理解的主动删除记忆请求。
+ *
+ * Deletion is intentionally keyed only by durable memory ids and the resolved
+ * user/project scope. Source turn ids are read-only traceability handles and
+ * must not be treated as delete targets.
+ * 删除刻意只接受长期 memory id 与已解析 user/project 范围。
+ * source turn id 只是只读追溯句柄，不能被当作删除目标。
+ */
+export type VmmGrpcDeleteMemoriesRequest = {
+  user_id: string
+  project_id: string
+  memory_ids: string[]
+  reason: string
+}
+
+/**
+ * Direct memory-delete response exposed to debug and tool-facing surfaces.
+ * 暴露给调试页和 tool 相关能力面的主动删记忆响应。
+ */
+export type VmmGrpcDeleteMemoriesResponse = {
+  deleted_memory_ids: string[]
+  not_found_memory_ids: string[]
+  deleted_vector_rows: string
+  trace_id: string
+}
+
+/**
  * PreCheck recall-mode enum names exposed by the current business contract.
  * 当前业务契约暴露的 PreCheck recall-mode 枚举名称。
  *
@@ -1040,6 +1070,7 @@ export type VmmGrpcContextItem = {
   turn_id: string
   has_dialogue: boolean
   created_datetime: string
+  memory_id: string
 }
 
 /**
@@ -1200,6 +1231,12 @@ type VmmServiceClient = grpcType.Client & {
     options: grpcType.CallOptions,
     callback: (error: grpcType.ServiceError | null, response?: VmmGrpcWriteMemoriesResponse) => void,
   ): grpcType.ClientUnaryCall
+  DeleteMemories(
+    request: VmmGrpcDeleteMemoriesRequest,
+    metadata: grpcType.Metadata,
+    options: grpcType.CallOptions,
+    callback: (error: grpcType.ServiceError | null, response?: VmmGrpcDeleteMemoriesResponse) => void,
+  ): grpcType.ClientUnaryCall
   ChatCompact(
     request: VmmGrpcChatCompactRequest,
     metadata: grpcType.Metadata,
@@ -1240,6 +1277,7 @@ type VmmUnaryMethodName =
   | "SearchMemoryEvents"
   | "GetTurnDetails"
   | "WriteMemories"
+  | "DeleteMemories"
   | "ChatCompact"
   | "PreCheck"
   | "PostAction"
@@ -1792,6 +1830,7 @@ function decodeManualContextItem(payload: Buffer): VmmGrpcContextItem {
     turn_id: "0",
     has_dialogue: false,
     created_datetime: "",
+    memory_id: "0",
   }
 
   let offset = 0
@@ -1816,6 +1855,7 @@ function decodeManualContextItem(payload: Buffer): VmmGrpcContextItem {
 
       if (fieldNumber === 3) item.turn_id = decoded.value.toString()
       else if (fieldNumber === 4) item.has_dialogue = decoded.value !== 0n
+      else if (fieldNumber === 6) item.memory_id = decoded.value.toString()
       continue
     }
 
@@ -2231,7 +2271,7 @@ async function callManualGrpcUnaryOnce<TRequest, TResponse>(args: {
       "content-type": "application/grpc+proto",
       te: "trailers",
       "x-trace-id": traceId,
-      "user-agent": "vmm-opencode-plugin/manual-h2",
+      "user-agent": "vulcan-plugins-opencode/manual-h2",
     }
     if (args.config?.grpcApiKey) {
       headers.authorization = `Bearer ${args.config.grpcApiKey}`
@@ -3159,6 +3199,31 @@ export async function callVmmWriteMemories(args: {
     target,
     methodName: "WriteMemories",
     methodPath: VMM_SERVICE_METHOD_WRITE_MEMORIES,
+    request: args.request,
+    config: args.config,
+  })
+}
+
+/**
+ * Call the VMM DeleteMemories unary RPC.
+ * 调用 VMM 的 DeleteMemories unary RPC。
+ *
+ * This tool-facing RPC requires exact durable memory ids. It deliberately does
+ * not accept turn ids, because a turn can produce or reference multiple
+ * memories while the delete operation targets only selected memory rows.
+ * 这条面向 tool 的 RPC 要求传入精确的长期 memory id。
+ * 它故意不接受 turn id，因为一条 turn 可能产生或关联多条记忆，
+ * 而删除操作只应命中特定 memory 行。
+ */
+export async function callVmmDeleteMemories(args: {
+  request: VmmGrpcDeleteMemoriesRequest
+  config?: VmmGrpcTransportConfig
+}) {
+  const target = normalizeGrpcTarget(args.config?.grpcTarget)
+  return callUnary<VmmGrpcDeleteMemoriesRequest, VmmGrpcDeleteMemoriesResponse>({
+    target,
+    methodName: "DeleteMemories",
+    methodPath: VMM_SERVICE_METHOD_DELETE_MEMORIES,
     request: args.request,
     config: args.config,
   })

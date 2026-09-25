@@ -36,13 +36,13 @@ export const VMM_LANGUAGE_CATALOG_DE = {
     recall_complete_injected: "Die Verlaufsprüfung ist abgeschlossen. {count} Erinnerungseinträge wurden injiziert.",
     missing_vulcan_host_target:
       "vulcan_host_target ist noch nicht konfiguriert. Abruf und Writeback werden derzeit übersprungen.",
-    binding_repair_user: "Bitte /vmm-setting erneut öffnen und die Benutzerbindung aktualisieren.",
-    binding_repair_project: "Bitte /vmm-setting erneut öffnen und die Projektbindung aktualisieren.",
-    binding_repair_both: "Bitte /vmm-setting erneut öffnen und Benutzer- sowie Projektbindung aktualisieren.",
+    binding_repair_user: "Bitte /vulcan-setting erneut öffnen und die Benutzerbindung aktualisieren.",
+    binding_repair_project: "Bitte /vulcan-setting erneut öffnen und die Projektbindung aktualisieren.",
+    binding_repair_both: "Bitte /vulcan-setting erneut öffnen und Benutzer- sowie Projektbindung aktualisieren.",
     binding_repair_generic: "Bitte prüfe die aktuelle VMM-Konfiguration.",
     language_list_toast: "Die unterstützten VMM-Sprachen wurden geladen.",
     language_missing: "Sprachwert fehlt. Verwende einen unterstützten Code oder inherit/default, um die aktuelle Überschreibung zu löschen.",
-    language_invalid: "Nicht unterstützter Sprachwert: {value}. Öffne /vmm-setting, um eine unterstützte Sprache auszuwählen.",
+    language_invalid: "Nicht unterstützter Sprachwert: {value}. Öffne /vulcan-setting, um eine unterstützte Sprache auszuwählen.",
     language_restart_notice: "Starte OpenCode neu, damit die Befehlsbeschreibungen in der Palette aktualisiert werden.",
     memory_context_handshake_timeout: "Zeitüberschreitung bei der Verbindung zur Speicherabfrage. Die Verlaufsinjektion wurde für diesen Turn übersprungen.",
     memory_context_receive_timeout: "Zeitüberschreitung bei der Antwort der Speicherabfrage. Die Verlaufsinjektion wurde für diesen Turn übersprungen.",
@@ -78,3 +78,4 @@ Das passiert normalerweise wegen eines Konflikts in der Portkonfiguration, daher
     final_check_notice: `## Du musst strikt einhalten: VMM (Vulcan Memory Mesh) Disziplin für Speicherverwendung und Rückverfolgbarkeit`,
   },
 } satisfies VmmLanguageCatalog
+

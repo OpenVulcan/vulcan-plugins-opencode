@@ -5,10 +5,10 @@
  *
  * This file belongs to the TUI interaction layer. It provides one standalone
  * debug screen for durable-memory tools, so operators can validate request
- * shape, worker bridging, and backend payloads without leaving `/vmm-setting`.
+ * shape, worker bridging, and backend payloads without leaving `/vulcan-setting`.
  * 这个文件属于 TUI 交互层。
  * 它提供一个独立调试页，覆盖长期记忆 tools，
- * 让操作者可以不离开 `/vmm-setting` 就完成请求结构、worker 桥接和后端载荷验证。
+ * 让操作者可以不离开 `/vulcan-setting` 就完成请求结构、worker 桥接和后端载荷验证。
  */
 
 import { createEffect, createMemo, createSignal } from "solid-js"
@@ -38,6 +38,9 @@ import {
   VMM_TUI_COLOR_STATUS_BUSY,
   VMM_TUI_COLOR_STATUS_IDLE,
   VMM_TUI_COLOR_SURFACE,
+  VMM_TUI_PANEL_HEADER_HEIGHT,
+  VMM_TUI_PANEL_OUTER_GAP,
+  VMM_TUI_PANEL_VERTICAL_PADDING,
   VMM_TUI_LEFT_PANE_WIDTH,
   VmmDialogHost,
   VmmListRow,
@@ -1150,11 +1153,11 @@ export const VmmToolsDebugScreen = (props: { api: TuiPluginApi }) => {
         height="100%"
         backgroundColor={VMM_TUI_COLOR_SURFACE}
         flexDirection="column"
-        paddingTop={1}
-        paddingBottom={1}
+        paddingTop={VMM_TUI_PANEL_VERTICAL_PADDING}
+        paddingBottom={VMM_TUI_PANEL_VERTICAL_PADDING}
         paddingLeft={2}
         paddingRight={2}
-        gap={1}
+        gap={VMM_TUI_PANEL_OUTER_GAP}
         onMouseUp={(event) => {
           if (event.button !== MouseButton.RIGHT) return
           event.stopPropagation()
@@ -1165,9 +1168,9 @@ export const VmmToolsDebugScreen = (props: { api: TuiPluginApi }) => {
           )
         }}
       >
-        <box width="100%" alignItems="center" justifyContent="center" height={5}>
+        <box width="100%" alignItems="center" justifyContent="center" height={VMM_TUI_PANEL_HEADER_HEIGHT}>
           <ascii_font
-            text="VMM OPENCODE PLUGIN"
+            text="VULCAN PLUGINS"
             font="tiny"
             color="#ffffff"
             backgroundColor="transparent"
@@ -1229,3 +1232,4 @@ export const VmmToolsDebugScreen = (props: { api: TuiPluginApi }) => {
     </>
   )
 }
+

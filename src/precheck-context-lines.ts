@@ -28,6 +28,7 @@ export type PreCheckContextLineItem = {
   turn_id?: string | number
   has_dialogue?: boolean
   created_datetime?: string
+  memory_id?: string | number
 }
 
 /**
@@ -101,6 +102,18 @@ function normalizePreCheckTurnIDValue(turnID: string | number | undefined) {
 }
 
 /**
+ * Normalize one raw memory id into a stable positive-integer string.
+ * 把原始 memory id 规范化为稳定的正整数字符串。
+ */
+function normalizePreCheckMemoryIDValue(memoryID: string | number | undefined) {
+  if (typeof memoryID === "number" && Number.isFinite(memoryID) && memoryID > 0) {
+    return String(Math.trunc(memoryID))
+  }
+  const normalized = typeof memoryID === "string" ? memoryID.trim() : ""
+  return normalized && /^[1-9][0-9]*$/.test(normalized) ? normalized : ""
+}
+
+/**
  * Format one turn marker into the injected header segment.
  * 把一条 turn 标记格式化成注入头部片段。
  *
@@ -119,6 +132,25 @@ function formatPreCheckTurnLabel(item: Pick<PreCheckContextLineItem, "turn_id" |
 
   const normalizedTurnID = normalizePreCheckTurnIDValue(item.turn_id)
   return normalizedTurnID ? `TURN_ID:${normalizedTurnID}` : "NOTURN"
+}
+
+/**
+ * Format the durable VMM identifier segment for one injected item.
+ * 为单条注入项格式化长期 VMM 标识片段。
+ *
+ * Memory deletion must target this memory id. The optional turn id is included
+ * only as a traceability companion so callers do not confuse it with a delete
+ * target.
+ * 记忆删除必须以这里的 memory id 为目标。可选 turn id 只作为追溯搭档，
+ * 避免调用方把它误认为删除目标。
+ */
+function formatPreCheckVmmIDLabel(item: Pick<PreCheckContextLineItem, "memory_id" | "turn_id" | "has_dialogue">) {
+  const normalizedMemoryID = normalizePreCheckMemoryIDValue(item.memory_id)
+  const normalizedTurnID = item.has_dialogue === false ? "" : normalizePreCheckTurnIDValue(item.turn_id)
+  const turnSegment = normalizedTurnID ? `;turn_id=${normalizedTurnID}` : ";turn_id=none"
+  return normalizedMemoryID
+    ? `VMM_ID:memory_id=${normalizedMemoryID}${turnSegment}`
+    : `VMM_ID:memory_id=unavailable${turnSegment}`
 }
 
 /**
@@ -148,9 +180,9 @@ export function formatPreCheckContextLine(item: PreCheckContextLineItem) {
   const text = collapsePreCheckContextBody(item.text)
   if (!text) return ""
 
-  return `[${
-    formatPreCheckTurnLabel(item)
-  }|SOURCE:${formatPreCheckSourceScore(item.score)}${formatPreCheckCreatedTime(item.created_datetime)}]${text}`
+  return `[${formatPreCheckVmmIDLabel(item)}|${formatPreCheckTurnLabel(item)}|SOURCE:${formatPreCheckSourceScore(
+    item.score,
+  )}${formatPreCheckCreatedTime(item.created_datetime)}]${text}`
 }
 
 /**

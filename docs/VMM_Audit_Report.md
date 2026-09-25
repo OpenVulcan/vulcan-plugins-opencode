@@ -324,9 +324,9 @@ OpenCode 插件里的 `.opencode/.vmm-writeback-outbox.json` 是**同一工作�
 这会导致**写回消息丢失**，属于插件侧最严重的数据可靠性缺陷之一。
 
 ### 📂 涉及修改的文件清单
-- `VmmOpenCodePlugins/src/writeback-outbox-mutation-queue.ts`
-- `VmmOpenCodePlugins/src/writeback-outbox-mutation-queue.test.ts`
-- `VmmOpenCodePlugins/src/memory-sync.ts`
+- `vulcan-plugins-opencode/src/writeback-outbox-mutation-queue.ts`
+- `vulcan-plugins-opencode/src/writeback-outbox-mutation-queue.test.ts`
+- `vulcan-plugins-opencode/src/memory-sync.ts`
 
 ### 🛠️ 修复方案与执行细节（How）
 - 新增 `writeback-outbox-mutation-queue.ts`
@@ -366,7 +366,7 @@ OpenCode 插件里的 `.opencode/.vmm-writeback-outbox.json` 是**同一工作�
 前者会导致“偶发启动异常 -> 后续全局永久失败”，后者会导致“目标切换越多，残留连接越多”。
 
 ### 📂 涉及修改的文件清单
-- `VmmOpenCodePlugins/src/vmm-grpc.ts`
+- `vulcan-plugins-opencode/src/vmm-grpc.ts`
 
 ### 🛠️ 修复方案与执行细节（How）
 - 修复 `getTransportRuntimeSet()`：
@@ -408,7 +408,7 @@ OpenCode 插件里的 `.opencode/.vmm-writeback-outbox.json` 是**同一工作�
 1. **VulcanMemoryMesh（Go）**  
    仓库 `go.mod` 要求 `go >= 1.26.1`，而当前容器只有 `go1.23.2`。因此无法在本环境完成 `go test ./...` 或全量编译。
 
-2. **VmmOpenCodePlugins（TypeScript）**  
+2. **vulcan-plugins-opencode（TypeScript）**  
    仓库未附带 `node_modules`。`package.json` 虽定义了 `tsc --noEmit` / `tsc -p tsconfig.json`，但当前离线环境无法补装 `@types/node`、`@grpc/*`、`@opencode-ai/plugin` 等依赖，因此无法在本环境完成全量 TS 构建校验。
 
 ### 结论

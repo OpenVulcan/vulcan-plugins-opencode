@@ -34,13 +34,13 @@ export const VMM_LANGUAGE_CATALOG_ZH_CN = {
     recall_complete_empty: "无需历史回顾。",
     recall_complete_injected: "历史回顾完成，已注入 {count} 条历史数据。",
     missing_vulcan_host_target: "尚未配置 vulcan_host_target，当前已跳过记忆检索与写回。",
-    binding_repair_user: "请重新打开 /vmm-setting，并更新当前用户绑定。",
-    binding_repair_project: "请重新打开 /vmm-setting，并更新当前项目绑定。",
-    binding_repair_both: "请重新打开 /vmm-setting，并同时更新用户与项目绑定。",
+    binding_repair_user: "请重新打开 /vulcan-setting，并更新当前用户绑定。",
+    binding_repair_project: "请重新打开 /vulcan-setting，并更新当前项目绑定。",
+    binding_repair_both: "请重新打开 /vulcan-setting，并同时更新用户与项目绑定。",
     binding_repair_generic: "请检查当前 VMM 配置。",
     language_list_toast: "已读取受支持的 VMM 语言。",
     language_missing: "缺少语言值。请提供受支持的语言代码，或使用 inherit/default 清空当前覆盖值。",
-    language_invalid: "不支持的语言值：{value}。请打开 /vmm-setting 选择受支持的语言。",
+    language_invalid: "不支持的语言值：{value}。请打开 /vulcan-setting 选择受支持的语言。",
     language_restart_notice: "需要重启 OpenCode，命令面板中的指令描述才会刷新为新语言。",
     memory_context_handshake_timeout: "记忆检索连接超时，本轮已跳过历史注入。",
     memory_context_receive_timeout: "记忆检索响应超时，本轮已跳过历史注入。",
@@ -76,3 +76,4 @@ export const VMM_LANGUAGE_CATALOG_ZH_CN = {
     final_check_notice: `## 对于记忆的调用必须严格遵守：VMM (Vulcan Memory Mesh) 记忆调用与溯源纪律`,
   },
 } satisfies VmmLanguageCatalog
+

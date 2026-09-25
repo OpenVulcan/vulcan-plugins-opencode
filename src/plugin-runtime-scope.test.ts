@@ -30,8 +30,8 @@ import {
 import { ROOT_SESSION_REGISTRY_TTL_MS } from "./root-session-registry.js"
 
 test("getPluginRuntimeScope reuses the same scope for the same directory", () => {
-  const first = getPluginRuntimeScope("D:/projects/VmmOpenCodePlugins")
-  const second = getPluginRuntimeScope("D:/projects/VmmOpenCodePlugins")
+  const first = getPluginRuntimeScope("D:/projects/vulcan-plugins-opencode")
+  const second = getPluginRuntimeScope("D:/projects/vulcan-plugins-opencode")
 
   assert.equal(first.rootSessionRegistry, second.rootSessionRegistry)
   assert.equal(first.sessionEventDedupe, second.sessionEventDedupe)

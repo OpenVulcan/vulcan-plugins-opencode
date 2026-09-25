@@ -36,13 +36,13 @@ export const VMM_LANGUAGE_CATALOG_JA = {
     recall_complete_injected: "履歴確認が完了しました。{count} 件のメモリを注入しました。",
     missing_vulcan_host_target:
       "vulcan_host_target がまだ設定されていないため、取得と書き戻しは現在スキップされています。",
-    binding_repair_user: "/vmm-setting を開き直して、現在のユーザーバインドを更新してください。",
-    binding_repair_project: "/vmm-setting を開き直して、現在のプロジェクトバインドを更新してください。",
-    binding_repair_both: "/vmm-setting を開き直して、ユーザーとプロジェクトの両方のバインドを更新してください。",
+    binding_repair_user: "/vulcan-setting を開き直して、現在のユーザーバインドを更新してください。",
+    binding_repair_project: "/vulcan-setting を開き直して、現在のプロジェクトバインドを更新してください。",
+    binding_repair_both: "/vulcan-setting を開き直して、ユーザーとプロジェクトの両方のバインドを更新してください。",
     binding_repair_generic: "現在の VMM 設定を確認してください。",
     language_list_toast: "サポートされている VMM 言語を読み込みました。",
     language_missing: "言語値が不足しています。対応コードを指定するか、inherit/default で現在の上書きを解除してください。",
-    language_invalid: "サポートされていない言語値です: {value}。/vmm-setting を開いて対応言語を選択してください。",
+    language_invalid: "サポートされていない言語値です: {value}。/vulcan-setting を開いて対応言語を選択してください。",
     language_restart_notice: "コマンドパレット内の説明を新しい言語に更新するには OpenCode を再起動してください。",
     memory_context_handshake_timeout: "メモリ取得の接続がタイムアウトしました。このターンでは履歴注入をスキップしました。",
     memory_context_receive_timeout: "メモリ取得の応答がタイムアウトしました。このターンでは履歴注入をスキップしました。",
@@ -78,3 +78,4 @@ export const VMM_LANGUAGE_CATALOG_JA = {
     final_check_notice: `## 厳守義務：VMM (Vulcan Memory Mesh) メモリ利用とトレーサビリティ規律`,
   },
 } satisfies VmmLanguageCatalog
+

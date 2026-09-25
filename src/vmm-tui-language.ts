@@ -617,12 +617,12 @@ function formatTemplate(template: string, vars: Record<string, string | number> 
  * 英语基线目录，同时用作默认文案和回退文案面。
  */
 const VMM_TUI_CATALOG_EN: VmmTuiCatalog = {
-  command_title: "VMM Setting Center",
-  command_description: "Open the VMM setting center",
-  mounted_entry_label: "VMM Control Panel",
-  setting_title: "VMM Setting Center",
+  command_title: "Vulcan Control Panel",
+  command_description: "Open the Vulcan control panel",
+  mounted_entry_label: "Vulcan Control Panel",
+  setting_title: "Vulcan Control Panel",
   setting_subtitle:
-    "Configure VMM from a dedicated TUI window instead of generating assistant replies.",
+    "Configure Vulcan from a dedicated TUI window instead of generating assistant replies.",
   setting_home_filter_placeholder: "Filter commands by title...",
   setting_home_list_title: "Commands",
   setting_home_empty: "No commands matched the current filter.",
@@ -647,7 +647,7 @@ const VMM_TUI_CATALOG_EN: VmmTuiCatalog = {
   setting_keys_hint: "Keys: Up/Down to select, Enter to open, Esc to leave.",
   setting_current_language: "Current UI language: {language}",
   setting_menu_user_manager_title: "User Manager",
-  setting_menu_user_manager_subtitle: "List, create, and switch VMM users.",
+  setting_menu_user_manager_subtitle: "List, create, and switch Vulcan users.",
   setting_menu_user_manager_detail_1: "Open a dedicated user control window.",
   setting_menu_user_manager_detail_2: "That window fetches the live user list from VMM.",
   setting_menu_user_manager_detail_3:
@@ -655,7 +655,7 @@ const VMM_TUI_CATALOG_EN: VmmTuiCatalog = {
   setting_menu_user_manager_detail_4:
     "Use the right-side selector panel to switch between local and global write scope.",
   setting_menu_project_manager_title: "Project Manager",
-  setting_menu_project_manager_subtitle: "List, create, and switch VMM projects.",
+  setting_menu_project_manager_subtitle: "List, create, and switch Vulcan projects.",
   setting_menu_project_manager_detail_1: "Open a dedicated project control window.",
   setting_menu_project_manager_detail_2: "That window fetches the live project list from VMM.",
   setting_menu_project_manager_detail_3:
@@ -663,7 +663,7 @@ const VMM_TUI_CATALOG_EN: VmmTuiCatalog = {
   setting_menu_project_manager_detail_4:
     "The project manager supports both local and global write scopes.",
   setting_menu_profile_center_title: "Profile Center",
-  setting_menu_profile_center_subtitle: "Inspect and edit active VMM profile nodes.",
+  setting_menu_profile_center_subtitle: "Inspect and edit active Vulcan profile nodes.",
   setting_menu_profile_center_detail_1:
     "Switch between user, project, team, and space profile targets.",
   setting_menu_profile_center_detail_2:
@@ -679,15 +679,15 @@ const VMM_TUI_CATALOG_EN: VmmTuiCatalog = {
     "This page always requests FULL mode through the Node bridge and renders the raw returned text.",
   setting_menu_tools_debug_title: "Tools Debug",
   setting_menu_tools_debug_subtitle:
-    "Probe memory tool-related VMM gRPC interfaces with the current workspace bindings.",
+    "Probe memory tool-related Vulcan gRPC interfaces with the current workspace bindings.",
   setting_menu_tools_debug_detail_1:
     "Open one isolated debug page for durable-memory RPCs exposed to tools.",
   setting_menu_tools_debug_detail_2:
     "The page reuses the current vulcan_host_target and, when needed, the current user/project bindings plus the current session route context.",
   setting_menu_tools_debug_detail_3:
-    "Use it to inspect raw request and response payloads without leaving /vmm-setting.",
+    "Use it to inspect raw request and response payloads without leaving /vulcan-setting.",
   setting_menu_language_title: "Language Control",
-  setting_menu_language_subtitle: "Set local or global VMM UI language overrides.",
+  setting_menu_language_subtitle: "Set local or global Vulcan UI language overrides.",
   setting_menu_language_detail_1:
     "Choose one supported language or clear the current scoped override.",
   setting_menu_language_detail_2:
@@ -712,8 +712,8 @@ const VMM_TUI_CATALOG_EN: VmmTuiCatalog = {
     "VMM and LuaSkills routing are handled behind vulcan-host.",
   setting_menu_grpc_transport_detail_3:
     "Adjust keepalive time, timeout, and idle ping behavior from the same page.",
-  user_manager_title: "VMM User Manager",
-  user_manager_subtitle: "Live VMM users on the left. Details and action hint on the right.",
+  user_manager_title: "Vulcan User Manager",
+  user_manager_subtitle: "Live Vulcan users on the left. Details and action hint on the right.",
   user_manager_section_list: "User List",
   user_manager_section_actions: "Actions",
   user_manager_section_users: "Live Users",
@@ -741,7 +741,7 @@ const VMM_TUI_CATALOG_EN: VmmTuiCatalog = {
   user_manager_already_bound_in_scope: "This user is already bound in the selected scope ({scope}).",
   user_manager_press_bind: "Press Enter or click to bind this user into {scope}.",
   user_manager_scope_note: "The selected write scope is currently {scope}.",
-  user_manager_toast_title: "VMM User Manager",
+  user_manager_toast_title: "Vulcan User Manager",
   user_manager_toast_switched: "{scope} user switched to {name} (#{id}).",
   user_manager_keys_hint: "Keys: Up/Down to select, Enter to act, Esc to go back.",
   user_manager_clear_title: "Clear Bound User",
@@ -910,8 +910,8 @@ const VMM_TUI_CATALOG_EN: VmmTuiCatalog = {
     "This project path conflicts with existing hierarchy data. Adjust the path and try again.",
   project_manager_overlay_error_confirmation:
     "This project path still requires explicit confirmation before creation.",
-  project_manager_title: "VMM Project Manager",
-  project_manager_subtitle: "Live VMM projects on the left. Details and write scope on the right.",
+  project_manager_title: "Vulcan Project Manager",
+  project_manager_subtitle: "Live Vulcan projects on the left. Details and write scope on the right.",
   project_manager_section_list: "Project List",
   project_manager_section_actions: "Actions",
   project_manager_section_projects: "Live Projects",
@@ -932,7 +932,7 @@ const VMM_TUI_CATALOG_EN: VmmTuiCatalog = {
   project_manager_status_created: "Project created and bound: {path}.",
   project_manager_status_resolved: "Project resolved and bound: {path}.",
   project_manager_status_cleared: "{scope} project binding has been cleared.",
-  project_manager_toast_title: "VMM Project Manager",
+  project_manager_toast_title: "Vulcan Project Manager",
   project_manager_toast_switched: "{scope} project switched to {path}.",
   project_manager_keys_hint: "Keys: Up/Down to select, Enter to act, Esc to go back.",
   project_manager_new_title: "New Project Path",
@@ -1364,7 +1364,7 @@ const VMM_TUI_CATALOG_EN: VmmTuiCatalog = {
   scope_switch_subtitle: "Switch the current write scope to {scope}.",
   scope_detail_selected: "{scope} is already selected as the write scope.",
   scope_detail_switch: "Use this to write the next change into {scope}.",
-  back_setting_title: "Back to Setting Center",
+  back_setting_title: "Back to Control Panel",
   back_setting_subtitle: "Return to the function list.",
   back_setting_detail_1: "Return to the top-level setting center.",
   back_setting_detail_2: "This keeps the user workflow list-first and window-based.",
@@ -1384,11 +1384,11 @@ const VMM_TUI_CATALOG_EN: VmmTuiCatalog = {
  * 第一版 TUI 多语言能力使用的简体中文目录。
  */
 const VMM_TUI_CATALOG_ZH_CN: VmmTuiCatalog = {
-  command_title: "VMM 设置中心",
-  command_description: "打开 VMM 设置中心",
-  mounted_entry_label: "VMM 控制面板",
-  setting_title: "VMM 设置中心",
-  setting_subtitle: "通过独立 TUI 窗口配置 VMM，而不是再生成助手回复。",
+  command_title: "Vulcan 控制面板",
+  command_description: "打开 Vulcan 控制面板",
+  mounted_entry_label: "Vulcan 控制面板",
+  setting_title: "Vulcan 控制面板",
+  setting_subtitle: "通过独立 TUI 窗口配置 Vulcan，而不是再生成助手回复。",
   setting_home_filter_placeholder: "按英文指令名快速过滤...",
   setting_home_list_title: "指令列表",
   setting_home_empty: "当前过滤条件下没有匹配的指令。",
@@ -1412,19 +1412,19 @@ const VMM_TUI_CATALOG_ZH_CN: VmmTuiCatalog = {
   setting_keys_hint: "按键：上下选择，回车打开，Esc 离开。",
   setting_current_language: "当前界面语言：{language}",
   setting_menu_user_manager_title: "用户管理",
-  setting_menu_user_manager_subtitle: "列出、创建并切换 VMM 用户。",
+  setting_menu_user_manager_subtitle: "列出、创建并切换 Vulcan 用户。",
   setting_menu_user_manager_detail_1: "打开独立的用户控制窗口。",
   setting_menu_user_manager_detail_2: "窗口会从 VMM 拉取实时用户列表。",
   setting_menu_user_manager_detail_3: "你可以直接切换到已有用户，也可以按名称创建新用户。",
   setting_menu_user_manager_detail_4: "可通过右侧选择面板在 local 与 global 写入范围之间切换。",
   setting_menu_project_manager_title: "项目管理",
-  setting_menu_project_manager_subtitle: "列出、创建并切换 VMM 项目。",
+  setting_menu_project_manager_subtitle: "列出、创建并切换 Vulcan 项目。",
   setting_menu_project_manager_detail_1: "打开独立的项目控制窗口。",
   setting_menu_project_manager_detail_2: "窗口会从 VMM 拉取实时项目列表。",
   setting_menu_project_manager_detail_3: "你可以绑定已有项目，也可以创建标准 Team/Space/Project 路径。",
   setting_menu_project_manager_detail_4: "项目管理支持 local 和 global 两种写入范围。",
   setting_menu_profile_center_title: "画像中心",
-  setting_menu_profile_center_subtitle: "查看并编辑 active VMM 画像节点。",
+  setting_menu_profile_center_subtitle: "查看并编辑 active Vulcan 画像节点。",
   setting_menu_profile_center_detail_1: "在 user、project、team、space 四个画像目标之间切换。",
   setting_menu_profile_center_detail_2: "在同一个窗口里刷新 active 节点，或者追加一条手工画像指令。",
   setting_menu_profile_center_detail_3: "画像读取会主动请求后端最大切片，尽量保证审阅信息完整。",
@@ -1436,15 +1436,15 @@ const VMM_TUI_CATALOG_ZH_CN: VmmTuiCatalog = {
     "这个页面会通过 Node bridge 请求 FULL 模式，并直接展示返回文本。",
   setting_menu_tools_debug_title: "TOOLS 调试",
   setting_menu_tools_debug_subtitle:
-    "按当前工作空间绑定测试与长期记忆 tools 相关的 VMM gRPC 接口。",
+    "按当前工作空间绑定测试与长期记忆 tools 相关的 Vulcan gRPC 接口。",
   setting_menu_tools_debug_detail_1:
     "打开一个独立调试页，测试长期记忆相关的对外 tools RPC。",
   setting_menu_tools_debug_detail_2:
     "页面会自动复用当前 vulcan_host_target，并在需要时复用当前 user/project 绑定和当前 session 路由上下文。",
   setting_menu_tools_debug_detail_3:
-    "你可以直接查看原始请求和响应载荷，而不用离开 /vmm-setting。",
+    "你可以直接查看原始请求和响应载荷，而不用离开 /vulcan-setting。",
   setting_menu_language_title: "语言控制",
-  setting_menu_language_subtitle: "设置本地或全局的 VMM 界面语言覆盖值。",
+  setting_menu_language_subtitle: "设置本地或全局的 Vulcan 界面语言覆盖值。",
   setting_menu_language_detail_1: "选择一个支持的语言，或者清空当前作用域里的语言覆盖。",
   setting_menu_language_detail_2: "当前 TUI 窗口会立即切换到新的生效语言。",
   setting_menu_language_detail_3: "命令面板里的说明仍然需要重启 OpenCode 才会刷新。",
@@ -1702,7 +1702,7 @@ const VMM_TUI_CATALOG_ZH_CN: VmmTuiCatalog = {
   language_control_clear_subtitle: "清空当前工作空间语言覆盖值，改为继承公共设置。",
   language_control_clear_detail_1: "移除当前写入范围的语言覆盖值，重新从其他层继承。",
   language_control_clear_detail_2: "命令面板里的说明仍然需要重启 OpenCode 才会刷新。",
-  memory_settings_title: "VMM 记忆设置",
+  memory_settings_title: "Vulcan 记忆设置",
   memory_settings_subtitle: "先选择功能，再选择写入范围。",
   memory_settings_section_list: "记忆控制",
   memory_settings_loading: "正在加载记忆设置...",
@@ -1711,7 +1711,7 @@ const VMM_TUI_CATALOG_ZH_CN: VmmTuiCatalog = {
   memory_settings_scope_workspace_subtitle: "把这条记忆设置写入当前工作空间。",
   memory_settings_scope_global_title: "公共设置",
   memory_settings_scope_global_subtitle: "把这条记忆设置写入公共设置。",
-  memory_settings_toast_title: "VMM 记忆设置",
+  memory_settings_toast_title: "Vulcan 记忆设置",
   memory_settings_keys_hint: "按键：上下选择，回车进入下一步，Esc/右键关闭。",
   memory_settings_inherit_value: "继承",
   memory_settings_state_pair: "项目：{project}|全局：{global}",
@@ -2041,7 +2041,7 @@ const VMM_TUI_CATALOG_ZH_CN: VmmTuiCatalog = {
   scope_switch_subtitle: "把当前写入范围切换到 {scope}。",
   scope_detail_selected: "{scope} 已经是当前写入范围。",
   scope_detail_switch: "后续一次修改会写入到 {scope}。",
-  back_setting_title: "返回设置中心",
+  back_setting_title: "返回控制面板",
   back_setting_subtitle: "回到功能列表。",
   back_setting_detail_1: "返回顶层设置中心。",
   back_setting_detail_2: "这样可以保持当前 user 工作流是“列表优先、窗口化”的模式。",
@@ -2067,11 +2067,11 @@ const VMM_TUI_CATALOG_ZH_CN: VmmTuiCatalog = {
 const VMM_TUI_CATALOGS_COMPACT: Record<Exclude<VmmLanguage, "en" | "zh-CN">, VmmTuiCatalog> = {
   es: {
     ...VMM_TUI_CATALOG_EN,
-    command_title: "Centro de ajustes VMM",
-    command_description: "Abrir el centro de ajustes VMM",
-    mounted_entry_label: "Panel de control VMM",
-    setting_title: "Centro de ajustes VMM",
-    setting_subtitle: "Configura VMM desde una ventana TUI dedicada, sin respuestas del asistente.",
+    command_title: "Panel de control Vulcan",
+    command_description: "Abrir el panel de control de Vulcan",
+    mounted_entry_label: "Panel de control Vulcan",
+    setting_title: "Panel de control Vulcan",
+    setting_subtitle: "Configura Vulcan desde una ventana TUI dedicada, sin respuestas del asistente.",
     setting_section_functions: "Funciones",
     setting_section_details: "Detalles",
     setting_keys_hint: "Teclas: Arriba/Abajo para seleccionar, Enter para abrir, Esc para salir.",
@@ -2112,7 +2112,7 @@ const VMM_TUI_CATALOGS_COMPACT: Record<Exclude<VmmLanguage, "en" | "zh-CN">, Vmm
     user_manager_new_user_subtitle: "Resolver o crear un usuario por nombre.",
     user_manager_refresh_title: "Actualizar lista",
     user_manager_refresh_subtitle: "Recargar datos en vivo desde VMM.",
-    back_setting_title: "Volver al centro",
+    back_setting_title: "Volver al panel",
     back_setting_subtitle: "Volver a la lista de funciones.",
     new_user_dialog_title: "Nuevo usuario VMM",
     new_user_dialog_placeholder: "Nombre del usuario",
@@ -2126,11 +2126,11 @@ const VMM_TUI_CATALOGS_COMPACT: Record<Exclude<VmmLanguage, "en" | "zh-CN">, Vmm
   },
   fr: {
     ...VMM_TUI_CATALOG_EN,
-    command_title: "Centre de réglages VMM",
-    command_description: "Ouvrir le centre de réglages VMM",
-    mounted_entry_label: "Panneau de contrôle VMM",
-    setting_title: "Centre de réglages VMM",
-    setting_subtitle: "Configure VMM depuis une fenêtre TUI dédiée, sans réponse d'assistant.",
+    command_title: "Panneau de contrôle Vulcan",
+    command_description: "Ouvrir le panneau de contrôle Vulcan",
+    mounted_entry_label: "Panneau de contrôle Vulcan",
+    setting_title: "Panneau de contrôle Vulcan",
+    setting_subtitle: "Configure Vulcan depuis une fenêtre TUI dédiée, sans réponse d'assistant.",
     setting_section_functions: "Fonctions",
     setting_section_details: "Détails",
     setting_keys_hint: "Touches : Haut/Bas pour choisir, Entrée pour ouvrir, Échap pour quitter.",
@@ -2171,7 +2171,7 @@ const VMM_TUI_CATALOGS_COMPACT: Record<Exclude<VmmLanguage, "en" | "zh-CN">, Vmm
     user_manager_new_user_subtitle: "Résoudre ou créer un utilisateur par nom.",
     user_manager_refresh_title: "Rafraîchir la liste",
     user_manager_refresh_subtitle: "Recharger les données en direct depuis VMM.",
-    back_setting_title: "Retour au centre",
+    back_setting_title: "Retour au panneau",
     back_setting_subtitle: "Revenir à la liste des fonctions.",
     new_user_dialog_title: "Nouvel utilisateur VMM",
     new_user_dialog_placeholder: "Nom de l'utilisateur",
@@ -2185,10 +2185,10 @@ const VMM_TUI_CATALOGS_COMPACT: Record<Exclude<VmmLanguage, "en" | "zh-CN">, Vmm
   },
   de: {
     ...VMM_TUI_CATALOG_EN,
-    command_title: "VMM-Einstellungszentrum",
-    command_description: "Das VMM-Einstellungszentrum öffnen",
-    mounted_entry_label: "VMM-Kontrollpanel",
-    setting_title: "VMM-Einstellungszentrum",
+    command_title: "Vulcan-Kontrollpanel",
+    command_description: "Das Vulcan-Kontrollpanel öffnen",
+    mounted_entry_label: "Vulcan-Kontrollpanel",
+    setting_title: "Vulcan-Kontrollpanel",
     setting_subtitle:
       "VMM in einem eigenen TUI-Fenster konfigurieren, statt Assistentenantworten zu erzeugen.",
     setting_section_functions: "Funktionen",
@@ -2231,7 +2231,7 @@ const VMM_TUI_CATALOGS_COMPACT: Record<Exclude<VmmLanguage, "en" | "zh-CN">, Vmm
     user_manager_new_user_subtitle: "Benutzer per Name auflösen oder erstellen.",
     user_manager_refresh_title: "Liste aktualisieren",
     user_manager_refresh_subtitle: "Live-Daten erneut aus VMM laden.",
-    back_setting_title: "Zurück zum Zentrum",
+    back_setting_title: "Zurück zum Kontrollpanel",
     back_setting_subtitle: "Zur Funktionsliste zurückkehren.",
     new_user_dialog_title: "Neuer VMM-Benutzer",
     new_user_dialog_placeholder: "Benutzername",
@@ -2245,11 +2245,11 @@ const VMM_TUI_CATALOGS_COMPACT: Record<Exclude<VmmLanguage, "en" | "zh-CN">, Vmm
   },
   ja: {
     ...VMM_TUI_CATALOG_EN,
-    command_title: "VMM 設定センター",
-    command_description: "VMM 設定センターを開く",
-    mounted_entry_label: "VMM コントロールパネル",
-    setting_title: "VMM 設定センター",
-    setting_subtitle: "アシスタント返信ではなく、専用 TUI ウィンドウで VMM を設定します。",
+    command_title: "Vulcan コントロールパネル",
+    command_description: "Vulcan コントロールパネルを開く",
+    mounted_entry_label: "Vulcan コントロールパネル",
+    setting_title: "Vulcan コントロールパネル",
+    setting_subtitle: "アシスタント返信ではなく、専用 TUI ウィンドウで Vulcan を設定します。",
     setting_section_functions: "機能",
     setting_section_details: "詳細",
     setting_keys_hint: "キー: 上下で選択、Enter で開く、Esc で戻る。",
@@ -2290,7 +2290,7 @@ const VMM_TUI_CATALOGS_COMPACT: Record<Exclude<VmmLanguage, "en" | "zh-CN">, Vmm
     user_manager_new_user_subtitle: "名前でユーザーを解決または作成します。",
     user_manager_refresh_title: "一覧を更新",
     user_manager_refresh_subtitle: "VMM から live データを再読み込みします。",
-    back_setting_title: "設定センターへ戻る",
+    back_setting_title: "コントロールパネルへ戻る",
     back_setting_subtitle: "機能一覧に戻ります。",
     new_user_dialog_title: "新しい VMM ユーザー",
     new_user_dialog_placeholder: "ユーザー名",
@@ -2304,11 +2304,11 @@ const VMM_TUI_CATALOGS_COMPACT: Record<Exclude<VmmLanguage, "en" | "zh-CN">, Vmm
   },
   ko: {
     ...VMM_TUI_CATALOG_EN,
-    command_title: "VMM 설정 센터",
-    command_description: "VMM 설정 센터 열기",
-    mounted_entry_label: "VMM 제어 패널",
-    setting_title: "VMM 설정 센터",
-    setting_subtitle: "도우미 응답 대신 전용 TUI 창에서 VMM 을 설정합니다.",
+    command_title: "Vulcan 제어 패널",
+    command_description: "Vulcan 제어 패널 열기",
+    mounted_entry_label: "Vulcan 제어 패널",
+    setting_title: "Vulcan 제어 패널",
+    setting_subtitle: "도우미 응답 대신 전용 TUI 창에서 Vulcan 을 설정합니다.",
     setting_section_functions: "기능",
     setting_section_details: "상세",
     setting_keys_hint: "키: 위/아래 선택, Enter 열기, Esc 나가기.",
@@ -2349,7 +2349,7 @@ const VMM_TUI_CATALOGS_COMPACT: Record<Exclude<VmmLanguage, "en" | "zh-CN">, Vmm
     user_manager_new_user_subtitle: "이름으로 사용자를 확인하거나 생성합니다.",
     user_manager_refresh_title: "목록 새로고침",
     user_manager_refresh_subtitle: "VMM 에서 live 데이터를 다시 불러옵니다.",
-    back_setting_title: "설정 센터로 돌아가기",
+    back_setting_title: "제어 패널로 돌아가기",
     back_setting_subtitle: "기능 목록으로 돌아갑니다.",
     new_user_dialog_title: "새 VMM 사용자",
     new_user_dialog_placeholder: "사용자 이름",
@@ -2665,9 +2665,9 @@ Object.assign(VMM_TUI_CATALOGS_SUPPLEMENTAL.es, {
   scope_switch_subtitle: "Cambiar el ámbito de escritura actual a {scope}.",
   scope_detail_selected: "{scope} ya está seleccionado como ámbito de escritura.",
   scope_detail_switch: "Usa esto para guardar el próximo cambio en {scope}.",
-  back_setting_title: "Volver al centro",
+  back_setting_title: "Volver al panel",
   back_setting_subtitle: "Volver a la lista de funciones.",
-  back_setting_detail_1: "Volver al centro de ajustes de nivel superior.",
+  back_setting_detail_1: "Volver al panel de ajustes de nivel superior.",
   back_setting_detail_2: "Esto mantiene el flujo basado en lista y ventanas.",
 })
 
@@ -2955,7 +2955,7 @@ Object.assign(VMM_TUI_CATALOGS_SUPPLEMENTAL.fr, {
   scope_switch_subtitle: "Basculer la portée d'écriture actuelle vers {scope}.",
   scope_detail_selected: "{scope} est déjà sélectionné comme portée d'écriture.",
   scope_detail_switch: "Utilise ceci pour écrire la prochaine modification dans {scope}.",
-  back_setting_title: "Retour au centre",
+  back_setting_title: "Retour au panneau",
   back_setting_subtitle: "Revenir à la liste des fonctions.",
   back_setting_detail_1: "Revenir au centre de réglages de niveau supérieur.",
   back_setting_detail_2: "Cela garde un flux basé sur liste et fenêtres.",
@@ -3243,7 +3243,7 @@ Object.assign(VMM_TUI_CATALOGS_SUPPLEMENTAL.de, {
   scope_switch_subtitle: "Den aktuellen Schreibbereich auf {scope} umstellen.",
   scope_detail_selected: "{scope} ist bereits als Schreibbereich gewählt.",
   scope_detail_switch: "Damit wird die nächste Änderung in {scope} gespeichert.",
-  back_setting_title: "Zurück zum Zentrum",
+  back_setting_title: "Zurück zum Kontrollpanel",
   back_setting_subtitle: "Zurück zur Funktionsliste.",
   back_setting_detail_1: "Zum übergeordneten Einstellungszentrum zurückkehren.",
   back_setting_detail_2: "Dadurch bleibt der Workflow listen- und fensterbasiert.",
@@ -3531,7 +3531,7 @@ Object.assign(VMM_TUI_CATALOGS_SUPPLEMENTAL.ja, {
   scope_switch_subtitle: "現在の書き込み範囲を {scope} に切り替えます。",
   scope_detail_selected: "{scope} はすでに現在の書き込み範囲です。",
   scope_detail_switch: "次の変更は {scope} に保存されます。",
-  back_setting_title: "設定センターへ戻る",
+  back_setting_title: "コントロールパネルへ戻る",
   back_setting_subtitle: "機能一覧へ戻ります。",
   back_setting_detail_1: "トップレベルの設定センターへ戻ります。",
   back_setting_detail_2: "これで一覧中心・ウィンドウ中心の流れを保てます。",
@@ -3819,7 +3819,7 @@ Object.assign(VMM_TUI_CATALOGS_SUPPLEMENTAL.ko, {
   scope_switch_subtitle: "현재 쓰기 범위를 {scope} 으로 전환합니다.",
   scope_detail_selected: "{scope} 이 이미 현재 쓰기 범위입니다.",
   scope_detail_switch: "다음 변경은 {scope} 에 기록됩니다.",
-  back_setting_title: "설정 센터로 돌아가기",
+  back_setting_title: "제어 패널로 돌아가기",
   back_setting_subtitle: "기능 목록으로 돌아갑니다.",
   back_setting_detail_1: "최상위 설정 센터로 돌아갑니다.",
   back_setting_detail_2: "이렇게 하면 목록 중심, 창 중심 흐름을 유지할 수 있습니다.",
@@ -3837,7 +3837,7 @@ Object.assign(VMM_TUI_CATALOGS_SUPPLEMENTAL.es, {
   setting_menu_tools_debug_detail_2:
     "La página reutiliza el vulcan_host_target actual y, cuando hace falta, también las vinculaciones actuales de user/project y el contexto de la sesión activa.",
   setting_menu_tools_debug_detail_3:
-    "Permite inspeccionar las cargas crudas de request y response sin salir de /vmm-setting.",
+    "Permite inspeccionar las cargas crudas de request y response sin salir de /vulcan-setting.",
   setting_menu_tools_debug_title: "Depurar Tools",
   tools_debug_title: "Depuración Tools VMM",
   tools_debug_section_actions: "Acciones",
@@ -3891,7 +3891,7 @@ Object.assign(VMM_TUI_CATALOGS_SUPPLEMENTAL.fr, {
   setting_menu_tools_debug_detail_2:
     "La page réutilise le vulcan_host_target actuel et, si nécessaire, les liaisons user/project courantes ainsi que le contexte de session active.",
   setting_menu_tools_debug_detail_3:
-    "Permet d'inspecter les payloads bruts de requête et de réponse sans quitter /vmm-setting.",
+    "Permet d'inspecter les payloads bruts de requête et de réponse sans quitter /vulcan-setting.",
   setting_menu_tools_debug_title: "Debug Tools",
   tools_debug_title: "Debug Tools VMM",
   tools_debug_section_actions: "Actions",
@@ -3946,7 +3946,7 @@ Object.assign(VMM_TUI_CATALOGS_SUPPLEMENTAL.de, {
   setting_menu_tools_debug_detail_2:
     "Die Seite verwendet das aktuelle vulcan_host_target und bei Bedarf auch die aktuellen user/project-Bindungen sowie den Kontext der aktiven Session.",
   setting_menu_tools_debug_detail_3:
-    "Damit lassen sich rohe Request- und Response-Payloads prüfen, ohne /vmm-setting zu verlassen.",
+    "Damit lassen sich rohe Request- und Response-Payloads prüfen, ohne /vulcan-setting zu verlassen.",
   setting_menu_tools_debug_title: "Tools Debug",
   tools_debug_title: "VMM Tools Debug",
   tools_debug_section_actions: "Aktionen",
@@ -4002,7 +4002,7 @@ Object.assign(VMM_TUI_CATALOGS_SUPPLEMENTAL.ja, {
   setting_menu_tools_debug_detail_2:
     "このページは現在の vulcan_host_target に加え、必要に応じて現在の user/project 束縛とアクティブ session 文脈も再利用します。",
   setting_menu_tools_debug_detail_3:
-    "/vmm-setting を離れずに raw の request/response payload を確認できます。",
+    "/vulcan-setting を離れずに raw の request/response payload を確認できます。",
   setting_menu_tools_debug_title: "TOOLS デバッグ",
   tools_debug_title: "VMM Tools デバッグ",
   tools_debug_section_actions: "アクション",
@@ -4059,7 +4059,7 @@ Object.assign(VMM_TUI_CATALOGS_SUPPLEMENTAL.ko, {
   setting_menu_tools_debug_detail_2:
     "이 페이지는 현재 vulcan_host_target 과 필요 시 현재 user/project 바인딩, 그리고 활성 session 문맥도 재사용합니다.",
   setting_menu_tools_debug_detail_3:
-    "/vmm-setting 을 벗어나지 않고 raw request/response payload 를 확인할 수 있습니다.",
+    "/vulcan-setting 을 벗어나지 않고 raw request/response payload 를 확인할 수 있습니다.",
   setting_menu_tools_debug_title: "TOOLS 디버그",
   tools_debug_title: "VMM Tools 디버그",
   tools_debug_section_actions: "동작",
@@ -4139,3 +4139,5 @@ export function getVmmTuiCommandMetadata(language: VmmLanguage | undefined) {
     mountedEntryLabel: tVmmTui(language, "mounted_entry_label"),
   }
 }
+
+

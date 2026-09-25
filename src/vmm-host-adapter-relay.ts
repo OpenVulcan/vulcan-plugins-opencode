@@ -122,7 +122,7 @@ function hasHostAdapterRelayTarget(config: VmmGrpcTransportConfig) {
 function buildHostAdapterClientContext() {
   return {
     client_name: "opencode",
-    client_version: "vmm-opencode-plugin",
+      client_version: "vulcan-plugins-opencode",
   }
 }
 

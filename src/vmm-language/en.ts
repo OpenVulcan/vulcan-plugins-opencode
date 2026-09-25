@@ -36,14 +36,14 @@ export const VMM_LANGUAGE_CATALOG_EN = {
     recall_complete_injected: "History review finished. Injected {count} memory items.",
     missing_vulcan_host_target:
       "vulcan_host_target is not configured yet. Retrieval and writeback are currently skipped.",
-    binding_repair_user: "Please reopen /vmm-setting and update the current user binding.",
-    binding_repair_project: "Please reopen /vmm-setting and update the current project binding.",
-    binding_repair_both: "Please reopen /vmm-setting and update both user and project bindings.",
+    binding_repair_user: "Please reopen /vulcan-setting and update the current user binding.",
+    binding_repair_project: "Please reopen /vulcan-setting and update the current project binding.",
+    binding_repair_both: "Please reopen /vulcan-setting and update both user and project bindings.",
     binding_repair_generic: "Please review the current VMM configuration.",
     language_list_toast: "Loaded supported VMM languages.",
     language_missing:
       "Missing language value. Use a supported language code, or use inherit/default to clear the current override.",
-    language_invalid: "Unsupported language value: {value}. Open /vmm-setting to choose a supported language.",
+    language_invalid: "Unsupported language value: {value}. Open /vulcan-setting to choose a supported language.",
     language_restart_notice: "Restart OpenCode to refresh command descriptions in the command palette.",
     memory_context_handshake_timeout: "Memory retrieval connection timed out. History injection was skipped for this turn.",
     memory_context_receive_timeout: "Memory retrieval response timed out. History injection was skipped for this turn.",
@@ -79,3 +79,4 @@ This is usually caused by a port configuration conflict, and the proxy settings 
     final_check_notice: `## You must strictly comply with: VMM (Vulcan Memory Mesh) Memory Usage and Traceability Discipline`,
   },
 } satisfies VmmLanguageCatalog
+

@@ -12,7 +12,7 @@
 2. 只对稳定收口的真实主线程轮次写回记忆。
 3. 把命令、后台回流、ASK 取消态、子线程噪声从记忆链中剔除。
 4. 使用新的 VMM gRPC 契约接入业务链和管理链。
-5. 让用户通过 `/vmm-setting` TUI 控制中心完成绑定、查看和管理，而不是手工编辑所有配置。
+5. 让用户通过 `/vulcan-setting` TUI 控制面板完成绑定、查看和管理，而不是手工编辑所有配置。
 6. 让用户可以为命令描述、toast 和 system 提示选择界面语言，同时保证提取语义不受影响。
 7. 让 TUI 管理面避开宿主运行时差异，不直接在页面代码里加载 gRPC 依赖链。
 8. 让完整画像 bundle 在普通对话里持续隐式生效，并只在真正需要时刷新。
@@ -33,7 +33,7 @@
 2. 管理 root session / active turn / sealed turns / followup 状态
 3. 控制什么时候检索、什么时候 finalize、什么时候写回
 4. 管理普通对话里的完整画像 bundle 预热、缓存、隐式注入与提交后刷新
-5. 把 `/vmm-setting` 之外的管理交互完全迁移到 TUI 控制中心
+5. 把 `/vulcan-setting` 之外的管理交互完全迁移到 TUI 控制面板
 
 ### 2.2 配置与 TUI 控制层
 
@@ -45,7 +45,7 @@
 职责：
 
 1. 提供 local/global 分层配置读写能力
-2. 提供 `/vmm-setting` TUI 控制中心入口
+2. 提供 `/vulcan-setting` TUI 控制面板入口
 3. 通过覆盖层完成绑定、列表、删除、迁移与语言切换
 4. 生成多语言 TUI、toast 与确认弹窗文案
 
@@ -86,7 +86,7 @@
 
 职责：
 
-1. 让 `/vmm-setting` 相关页面不直接在 TUI 宿主里加载 gRPC transport
+1. 让 `/vulcan-setting` 相关页面不直接在 TUI 宿主里加载 gRPC transport
 2. 通过独立 `node` 子进程调用 `dist/vmm-tui-grpc-bridge-worker.js`
 3. 在 worker 内部复用 `src/vmm-grpc.ts`
 4. 把 worker 失败重新归一化成与普通 unary 相同的结果结构
@@ -202,7 +202,7 @@
 
 公开入口现在只保留：
 
-- `/vmm-setting`
+- `/vulcan-setting`
 
 ### 7.2 管理交互
 
@@ -221,7 +221,7 @@
 现在的隔离原则变成：
 
 1. 普通记忆链只处理真实聊天轮次
-2. 管理面交互留在 `/vmm-setting` TUI 内部完成
+2. 管理面交互留在 `/vulcan-setting` TUI 内部完成
 3. 显式记忆包裹仍会在文本清洗阶段被剥离，避免展示层包裹回流到写回载荷
 
 ## 9. 当前 gRPC 交互模型
@@ -273,7 +273,7 @@
 
 ### 9.3 TUI 管理 RPC
 
-当前 `/vmm-setting` 相关页面不会直接在 TUI 页面代码里调用 `src/vmm-grpc.ts`。
+当前 `/vulcan-setting` 相关页面不会直接在 TUI 页面代码里调用 `src/vmm-grpc.ts`。
 
 链路改成：
 
@@ -338,3 +338,5 @@
 2. `.vmm/README.md`
 3. 本文档
 4. `docs/api-integration-handoff-2026-03-22.md`
+
+

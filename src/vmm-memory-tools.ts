@@ -15,10 +15,12 @@ import { tool } from "@opencode-ai/plugin"
 
 import { loadVmmConfig } from "./vmm-config.js"
 import {
+  callVmmDeleteMemories,
   callVmmGetTurnDetails,
   callVmmSearchMemoryEvents,
   callVmmWriteMemories,
   extractTransportConfig,
+  type VmmGrpcDeleteMemoriesResponse,
   type VmmGrpcGetTurnDetailsResponse,
   type VmmGrpcMemoryLevel,
   type VmmGrpcMemoryPriority,
@@ -60,7 +62,7 @@ const VMM_MEMORY_TOOL_CLIENT_NAME = "opencode"
  * Plugin client version marker used for VMM memory metadata diagnostics.
  * VMM 记忆元信息诊断使用的插件客户端版本标记。
  */
-const VMM_MEMORY_TOOL_CLIENT_VERSION = "vmm-opencode-plugin"
+const VMM_MEMORY_TOOL_CLIENT_VERSION = "vulcan-plugins-opencode"
 
 /**
  * Stable VMM memory tool names expected from vulcan-host metadata.
@@ -69,6 +71,7 @@ const VMM_MEMORY_TOOL_CLIENT_VERSION = "vmm-opencode-plugin"
 const VMM_MEMORY_SEARCH_TOOL_NAME = "vmm_memory_search"
 const VMM_TURN_DETAILS_TOOL_NAME = "vmm_turn_details"
 const VMM_MEMORY_WRITE_TOOL_NAME = "vmm_memory_write"
+const VMM_MEMORY_DELETE_TOOL_NAME = "vmm_memory_delete"
 
 /**
  * Structured write-item input exposed by the public AI-facing memory-write tool.
@@ -81,6 +84,15 @@ type VmmMemoryWriteToolItemInput = {
   scopeLevel?: number
   priority?: number
   memoryLevel?: number
+}
+
+/**
+ * Structured delete input exposed by the public AI-facing memory-delete tool.
+ * 对外开放的删记忆 tool 使用的结构化输入。
+ */
+type VmmMemoryDeleteToolInput = {
+  memoryIds: string[]
+  reason: string
 }
 
 /**
@@ -277,6 +289,19 @@ function normalizeWriteResponse(response: VmmGrpcWriteMemoriesResponse) {
 }
 
 /**
+ * Normalize one delete-memory response into a compact JSON result for the model.
+ * 把一条删记忆响应归一化成供模型消费的紧凑 JSON 结果。
+ */
+function normalizeDeleteResponse(response: VmmGrpcDeleteMemoriesResponse) {
+  return {
+    trace_id: response.trace_id,
+    deleted_memory_ids: response.deleted_memory_ids,
+    not_found_memory_ids: response.not_found_memory_ids,
+    deleted_vector_rows: response.deleted_vector_rows,
+  }
+}
+
+/**
  * Coerce one optional numeric concept value into the narrow write type.
  * 把一条可选数字概念值收口到更窄的写记忆类型里。
  *
@@ -321,6 +346,11 @@ export function buildVmmMemoryToolsFromDescriptors(
     metadata,
     VMM_MEMORY_WRITE_TOOL_NAME,
     ["items"],
+  )
+  const deleteMetadata = resolveRequiredVmmMemoryToolMetadata(
+    metadata,
+    VMM_MEMORY_DELETE_TOOL_NAME,
+    ["memoryIds", "reason"],
   )
   const tools: Record<string, any> = {}
 
@@ -449,6 +479,52 @@ export function buildVmmMemoryToolsFromDescriptors(
           metadata: {
             traceID: normalized.trace_id,
             itemCount: normalized.item_count,
+          },
+        })
+        return JSON.stringify(normalized, null, 2)
+      },
+    })
+  }
+
+  if (deleteMetadata) {
+    tools[VMM_MEMORY_DELETE_TOOL_NAME] = tool({
+      description:
+        deleteMetadata.descriptor.description ||
+        "Delete explicit durable VMM memories only after the user clearly asks to delete or replace a known memory. This tool requires exact memory_id values from search or PreCheck VMM_ID markers; never delete by turn_id, never infer ids from text, and never use it for broad cleanup.",
+      args: deleteMetadata.args,
+      async execute(args, context) {
+        const runtime = await loadReadyWorkspaceToolRuntime(context.directory, {
+          sessionID: context.sessionID,
+        })
+        if (!runtime.ready) {
+          return runtime.message
+        }
+
+        // The schema may be supplied by gRPC, so narrow validated values before transport.
+        // schema 可能来自 gRPC，因此传输前先把已校验值收窄到调用类型。
+        const input = args as VmmMemoryDeleteToolInput
+
+        const result = await callVmmDeleteMemories({
+          request: {
+            user_id: runtime.runtime.runtimeConfig.userId,
+            project_id: runtime.runtime.runtimeConfig.projectId,
+            memory_ids: input.memoryIds,
+            reason: input.reason.trim(),
+          },
+          config: extractTransportConfig(runtime.runtime.runtimeConfig),
+        })
+
+        if (!result.ok || !result.response) {
+          return formatWorkspaceToolUnaryFailure("DeleteMemories", result)
+        }
+
+        const normalized = normalizeDeleteResponse(result.response)
+        context.metadata({
+          title: "VMM Memory Delete",
+          metadata: {
+            traceID: normalized.trace_id,
+            deletedCount: normalized.deleted_memory_ids.length,
+            notFoundCount: normalized.not_found_memory_ids.length,
           },
         })
         return JSON.stringify(normalized, null, 2)

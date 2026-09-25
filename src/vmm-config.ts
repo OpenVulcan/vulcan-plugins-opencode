@@ -68,10 +68,10 @@ const VMM_DEFAULT_TEMPLATE_FILENAME = "config.default.json"
  * Syntax rules used by env placeholder parsing and numeric binding validation.
  * 环境变量占位符解析与数字绑定校验所使用的语法规则。
  *
- * The slash-command parser has been retired in favor of `/vmm-setting`, but
+ * The slash-command parser has been retired in favor of `/vulcan-setting`, but
  * config loading still needs one shared numeric-id rule for business scope
  * validation.
- * 旧的 slash 命令解析器已经下线并收敛到 `/vmm-setting`，
+ * 旧的 slash 命令解析器已经下线并收敛到 `/vulcan-setting`，
  * 但配置加载仍然需要一套统一的数字 ID 规则来校验业务作用域。
  */
 const CONFIG_ENV_REF_REGEX = /^\$(?:\{([A-Za-z_][A-Za-z0-9_]*)\}|([A-Za-z_][A-Za-z0-9_]*))$/
@@ -907,3 +907,4 @@ export async function saveVmmConfig(
   await fs.writeFile(configPath, JSON.stringify(next, null, 2) + "\n", "utf8")
   return configPath
 }
+

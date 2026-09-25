@@ -86,7 +86,7 @@ const VMM_FEATURE_STATUS_CLIENT_NAME = "opencode"
  * Stable client version marker used in VMM status diagnostics.
  * VMM 状态诊断使用的稳定客户端版本标记。
  */
-const VMM_FEATURE_STATUS_CLIENT_VERSION = "vmm-opencode-plugin"
+const VMM_FEATURE_STATUS_CLIENT_VERSION = "vulcan-plugins-opencode"
 
 /**
  * Return the disabled status used when the plugin cannot verify VMM availability.

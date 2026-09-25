@@ -36,13 +36,13 @@ export const VMM_LANGUAGE_CATALOG_KO = {
     recall_complete_injected: "기록 검토가 완료되었습니다. 메모리 {count}개를 주입했습니다.",
     missing_vulcan_host_target:
       "vulcan_host_target 이 아직 설정되지 않아 검색과 쓰기 반환이 현재 건너뛰어집니다.",
-    binding_repair_user: "/vmm-setting 을 다시 열고 현재 사용자 바인딩을 업데이트해 주세요.",
-    binding_repair_project: "/vmm-setting 을 다시 열고 현재 프로젝트 바인딩을 업데이트해 주세요.",
-    binding_repair_both: "/vmm-setting 을 다시 열고 사용자와 프로젝트 바인딩을 모두 업데이트해 주세요.",
+    binding_repair_user: "/vulcan-setting 을 다시 열고 현재 사용자 바인딩을 업데이트해 주세요.",
+    binding_repair_project: "/vulcan-setting 을 다시 열고 현재 프로젝트 바인딩을 업데이트해 주세요.",
+    binding_repair_both: "/vulcan-setting 을 다시 열고 사용자와 프로젝트 바인딩을 모두 업데이트해 주세요.",
     binding_repair_generic: "현재 VMM 설정을 확인해 주세요.",
     language_list_toast: "지원되는 VMM 언어를 불러왔습니다.",
     language_missing: "언어 값이 없습니다. 지원되는 코드를 사용하거나 inherit/default 로 현재 재정의를 해제하세요.",
-    language_invalid: "지원되지 않는 언어 값입니다: {value}. /vmm-setting 을 열어 지원되는 언어를 선택해 주세요.",
+    language_invalid: "지원되지 않는 언어 값입니다: {value}. /vulcan-setting 을 열어 지원되는 언어를 선택해 주세요.",
     language_restart_notice: "명령 팔레트의 설명을 새 언어로 갱신하려면 OpenCode 를 다시 시작해 주세요.",
     memory_context_handshake_timeout: "메모리 검색 연결 시간이 초과되었습니다. 이 턴의 기록 주입을 건너뛰었습니다.",
     memory_context_receive_timeout: "메모리 검색 응답 시간이 초과되었습니다. 이 턴의 기록 주입을 건너뛰었습니다.",
@@ -78,3 +78,4 @@ export const VMM_LANGUAGE_CATALOG_KO = {
     final_check_notice: `## 반드시 엄수해야 함: VMM (Vulcan Memory Mesh) 메모리 사용 및 추적 규율`,
   },
 } satisfies VmmLanguageCatalog
+

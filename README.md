@@ -1,6 +1,6 @@
-# vmm-opencode-plugins
+# vulcan-plugins-opencode
 
-OpenCode 的 VulcanMemoryMesh 记忆插件工作区。
+OpenCode 的 Vulcan Plugins 插件工作区，当前同时承载 Vulcan 记忆能力与 Vulcan tools 接入能力。
 
 ## 当前实现
 
@@ -10,7 +10,7 @@ OpenCode 的 VulcanMemoryMesh 记忆插件工作区。
 2. 在真实用户轮次进入时调用 `PreCheck`，按当前后端语义做安全 fail-open 检索。
 3. 在稳定收口后调用 `PostAction`，并把中间过程整理为结构化 `timeline[]`。
 4. 使用本地 outbox 顺序重放失败写回，避免临时网络问题直接丢失数据。
-5. 提供统一的 `/vmm-setting` TUI 控制中心，用来完成绑定、语言、画像和记忆模式管理。
+5. 提供统一的 `/vulcan-setting` TUI 控制面板，用来完成绑定、语言、画像和记忆模式管理。
 6. 所有管理交互都迁移到 TUI 覆盖层，不再依赖旧的 `/vmm-*` 文本命令回执。
 7. 提供多语言 UI 文案，当前默认英语，首版支持 `en`、`zh-CN`、`es`、`fr`、`de`、`ja`、`ko`。
 8. 在新 root session 首轮前读取完整画像 bundle，并以隐藏 system 形式持续隐式注入。
@@ -35,7 +35,7 @@ OpenCode 的 VulcanMemoryMesh 记忆插件工作区。
 - `language` 未设置或设置无效时，会安全回退到英语
 - 只有 `vulcan_host_target + user_id + project_id` 同时有效时，检索和写回链才会启用
 - `profile_refresh_turns` 只控制“成功提交多少条 turn 后重新拉取画像 bundle”，不控制画像注入本身持续多久
-- 修改 `language` 后，运行时 toast 和 TUI 界面会立刻切换，但 `/vmm-setting` 的入口描述仍然需要重启 OpenCode 才会刷新
+- 修改 `language` 后，运行时 toast 和 TUI 界面会立刻切换，但 `/vulcan-setting` 的入口描述仍然需要重启 OpenCode 才会刷新
 
 默认模板位于：
 
@@ -52,9 +52,9 @@ OpenCode 的 VulcanMemoryMesh 记忆插件工作区。
 
 普通用户可见的公开入口现在只保留：
 
-- `/vmm-setting`
+- `/vulcan-setting`
 
-绑定、语言切换、画像查看/写入、项目迁移、删除确认、记忆模式切换等操作都已经收敛到这个 TUI 控制中心里。
+绑定、语言切换、画像查看/写入、项目迁移、删除确认、记忆模式切换等操作都已经收敛到这个 TUI 控制面板里。
 
 普通对话链还会自动做两件和画像相关的事情：
 
@@ -99,3 +99,4 @@ npm run build
 1. `ResolveProject / EnsureProject / ResolveUser / DeleteUser` 的确认流提示是否符合真实宿主体验。
 2. `PreCheck` 当前“不注入”语义是否与后端最新实现保持一致。
 3. 真实 gRPC 超时、断连和 outbox 重放是否符合预期。
+

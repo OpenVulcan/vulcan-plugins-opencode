@@ -25,6 +25,11 @@ import {
   VMM_TUI_COLOR_BORDER,
   VMM_TUI_COLOR_HINT,
   VMM_TUI_COLOR_MUTED,
+  VMM_TUI_PANEL_HEADER_HEIGHT,
+  VMM_TUI_PANEL_OUTER_GAP,
+  VMM_TUI_PANEL_VERTICAL_PADDING,
+  VMM_TUI_OVERLAY_PANEL_HEIGHT,
+  VMM_TUI_OVERLAY_PANEL_WIDTH,
   VMM_TUI_COLOR_SURFACE,
   VmmCompactListRow,
   VmmDialogHost,
@@ -704,21 +709,21 @@ export const VmmGrpcTransportSettingsOverlay = (props: {
         }}
       >
         <box
-          width="78%"
-          height="78%"
+          width={VMM_TUI_OVERLAY_PANEL_WIDTH}
+          height={VMM_TUI_OVERLAY_PANEL_HEIGHT}
           backgroundColor={VMM_TUI_COLOR_SURFACE}
           border
           borderColor={VMM_TUI_COLOR_BORDER}
           flexDirection="column"
-          paddingTop={1}
-          paddingBottom={1}
+          paddingTop={VMM_TUI_PANEL_VERTICAL_PADDING}
+          paddingBottom={VMM_TUI_PANEL_VERTICAL_PADDING}
           paddingLeft={1}
           paddingRight={1}
-          gap={1}
+          gap={VMM_TUI_PANEL_OUTER_GAP}
         >
           <box
             width="100%"
-            height={5}
+            height={VMM_TUI_PANEL_HEADER_HEIGHT}
             backgroundColor="transparent"
             flexDirection="column"
             justifyContent="center"
@@ -742,7 +747,7 @@ export const VmmGrpcTransportSettingsOverlay = (props: {
             backgroundColor="transparent"
             flexDirection="column"
             padding={1}
-            gap={1}
+            gap={VMM_TUI_PANEL_OUTER_GAP}
           >
             <VmmScrollColumn
               selectedChildId={buildVmmRowRenderableId("grpc-transport-settings", selectedId())}

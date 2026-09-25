@@ -81,7 +81,7 @@
 
 - 普通聊天不做记忆检索
 - finalize 不做写回
-- `/vmm-setting` 仍然可用，方便用户修复配置
+- `/vulcan-setting` 仍然可用，方便用户修复配置
 
 ## 画像 bundle 运行时规则
 
@@ -96,11 +96,12 @@
 
 当前公开入口只保留：
 
-- `/vmm-setting`
+- `/vulcan-setting`
 
-所有绑定、语言切换、画像管理、项目迁移/删除和记忆模式切换都已经转入 TUI 控制中心。
+所有绑定、语言切换、画像管理、项目迁移/删除和记忆模式切换都已经转入 TUI 控制面板。
 
 ## 语言切换说明
 
 - 运行时 toast、system 提示、显式记忆包裹文案会跟随当前生效语言切换
-- `/vmm-setting` 的入口描述在启动阶段注册，因此修改 `language` 后需要重启 OpenCode 才能刷新
+- `/vulcan-setting` 的入口描述在启动阶段注册，因此修改 `language` 后需要重启 OpenCode 才能刷新
+

@@ -35,6 +35,9 @@ import {
   VMM_TUI_COLOR_STATUS_IDLE,
   VMM_TUI_COLOR_SURFACE,
   VMM_TUI_COLOR_TITLE,
+  VMM_TUI_PANEL_HEADER_HEIGHT,
+  VMM_TUI_PANEL_OUTER_GAP,
+  VMM_TUI_PANEL_VERTICAL_PADDING,
   VMM_TUI_LEFT_PANE_WIDTH,
   VmmDialogHost,
   VmmCompactListRow,
@@ -1026,11 +1029,11 @@ export const VmmProfileCenterScreen = (props: { api: TuiPluginApi }) => {
         height="100%"
         backgroundColor={VMM_TUI_COLOR_SURFACE}
         flexDirection="column"
-        paddingTop={1}
-        paddingBottom={1}
+        paddingTop={VMM_TUI_PANEL_VERTICAL_PADDING}
+        paddingBottom={VMM_TUI_PANEL_VERTICAL_PADDING}
         paddingLeft={2}
         paddingRight={2}
-        gap={1}
+        gap={VMM_TUI_PANEL_OUTER_GAP}
         onMouseUp={(event) => {
           if (event.button !== MouseButton.RIGHT) return
           event.stopPropagation()
@@ -1042,9 +1045,9 @@ export const VmmProfileCenterScreen = (props: { api: TuiPluginApi }) => {
           openVmmSettingScreen(props.api)
         }}
       >
-        <box width="100%" alignItems="center" justifyContent="center" height={5}>
+        <box width="100%" alignItems="center" justifyContent="center" height={VMM_TUI_PANEL_HEADER_HEIGHT}>
           <ascii_font
-            text="VMM OPENCODE PLUGIN"
+            text="VULCAN PLUGINS"
             font="tiny"
             color="#ffffff"
             backgroundColor="transparent"
@@ -1357,11 +1360,11 @@ export const VmmProfileBundleTestScreen = (props: { api: TuiPluginApi }) => {
         height="100%"
         backgroundColor={VMM_TUI_COLOR_SURFACE}
         flexDirection="column"
-        paddingTop={1}
-        paddingBottom={1}
+        paddingTop={VMM_TUI_PANEL_VERTICAL_PADDING}
+        paddingBottom={VMM_TUI_PANEL_VERTICAL_PADDING}
         paddingLeft={2}
         paddingRight={2}
-        gap={1}
+        gap={VMM_TUI_PANEL_OUTER_GAP}
         onMouseUp={(event) => {
           if (event.button !== MouseButton.RIGHT) return
           event.stopPropagation()
@@ -1369,9 +1372,9 @@ export const VmmProfileBundleTestScreen = (props: { api: TuiPluginApi }) => {
           openVmmSettingScreen(props.api)
         }}
       >
-        <box width="100%" alignItems="center" justifyContent="center" height={5}>
+        <box width="100%" alignItems="center" justifyContent="center" height={VMM_TUI_PANEL_HEADER_HEIGHT}>
           <ascii_font
-            text="VMM OPENCODE PLUGIN"
+            text="VULCAN PLUGINS"
             font="tiny"
             color="#ffffff"
             backgroundColor="transparent"

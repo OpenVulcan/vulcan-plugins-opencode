@@ -36,13 +36,13 @@ export const VMM_LANGUAGE_CATALOG_ES = {
     recall_complete_injected: "La revisión del historial terminó. Se inyectaron {count} elementos de memoria.",
     missing_vulcan_host_target:
       "vulcan_host_target aún no está configurado. La recuperación y la escritura están omitidas por ahora.",
-    binding_repair_user: "Abre de nuevo /vmm-setting y actualiza la vinculación del usuario.",
-    binding_repair_project: "Abre de nuevo /vmm-setting y actualiza la vinculación del proyecto.",
-    binding_repair_both: "Abre de nuevo /vmm-setting y actualiza las vinculaciones de usuario y proyecto.",
+    binding_repair_user: "Abre de nuevo /vulcan-setting y actualiza la vinculación del usuario.",
+    binding_repair_project: "Abre de nuevo /vulcan-setting y actualiza la vinculación del proyecto.",
+    binding_repair_both: "Abre de nuevo /vulcan-setting y actualiza las vinculaciones de usuario y proyecto.",
     binding_repair_generic: "Revisa la configuración actual de VMM.",
     language_list_toast: "Se cargaron los idiomas VMM compatibles.",
     language_missing: "Falta el valor del idioma. Usa un código admitido o inherit/default para borrar la anulación actual.",
-    language_invalid: "Valor de idioma no compatible: {value}. Abre /vmm-setting para elegir un idioma admitido.",
+    language_invalid: "Valor de idioma no compatible: {value}. Abre /vulcan-setting para elegir un idioma admitido.",
     language_restart_notice: "Reinicia OpenCode para actualizar las descripciones de comandos en la paleta.",
     memory_context_handshake_timeout: "Se agotó el tiempo de conexión para recuperar memoria. Se omitió la inyección de historial en este turno.",
     memory_context_receive_timeout: "Se agotó el tiempo de respuesta al recuperar memoria. Se omitió la inyección de historial en este turno.",
@@ -78,3 +78,4 @@ Esto suele ocurrir por un conflicto en la configuración del puerto y es necesar
     final_check_notice: `## Debes cumplir estrictamente: Disciplina de uso de memoria y trazabilidad de VMM (Vulcan Memory Mesh)`,
   },
 } satisfies VmmLanguageCatalog
+

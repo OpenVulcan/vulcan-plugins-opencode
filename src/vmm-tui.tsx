@@ -1,13 +1,13 @@
 /** @jsxImportSource @opentui/solid */
 /**
- * VMM setting-center TUI entry for OpenCode.
- * OpenCode 使用的 VMM 设置中心 TUI 入口。
+ * Vulcan control-panel TUI entry for OpenCode.
+ * OpenCode 使用的 Vulcan 控制面板 TUI 入口。
  *
  * This file belongs to the TUI interaction layer. It exposes one stable
- * `/vmm-setting` entry, then routes the user into focused control windows
+ * `/vulcan-setting` entry, then routes the user into focused control windows
  * such as the user manager. The goal is to move command
  * interactions out of the LLM reply flow and into explicit terminal UI.
- * 这个文件属于 TUI 交互层。它对外只暴露稳定的 `/vmm-setting` 入口，
+ * 这个文件属于 TUI 交互层。它对外只暴露稳定的 `/vulcan-setting` 入口，
  * 再把用户分流到更聚焦的控制窗口，例如 user manager 和诊断页。
  * 目标是把指令式交互从 LLM 回答链路里移出来，转成明确的终端界面操作。
  */
@@ -66,22 +66,22 @@ import { VmmProfileBundleTestScreen, VmmProfileCenterScreen } from "./vmm-tui-pr
 import { VmmToolsDebugScreen } from "./vmm-tui-tools-debug.js"
 
 /**
- * Stable route and slash-command identifiers for the TUI setting center.
- * 设置中心使用的稳定路由名与 slash 命令值。
+ * Stable route and slash-command identifiers for the TUI control panel.
+ * 控制面板使用的稳定路由名与 slash 命令值。
  *
- * The top-level entry remains `/vmm-setting` so the user does not need to
+ * The top-level entry remains `/vulcan-setting` so the user does not need to
  * relearn command names while the internal UI is being rebuilt.
- * 顶层入口继续复用 `/vmm-setting`，这样在内部 UI 重建期间，
+ * 顶层入口继续复用 `/vulcan-setting`，这样在内部 UI 重建期间，
  * 用户不需要重新记新的命令名。
  */
-const VMM_SETTING_ROUTE_NAME = "vmm-setting"
-const VMM_PROFILE_CENTER_ROUTE_NAME = "vmm-setting-profile-center"
-const VMM_PROFILE_BUNDLE_TEST_ROUTE_NAME = "vmm-setting-profile-bundle-test"
-const VMM_TOOLS_DEBUG_ROUTE_NAME = "vmm-setting-tools-debug"
-const VMM_LANGUAGE_ROUTE_NAME = "vmm-setting-language"
-const VMM_MEMORY_ROUTE_NAME = "vmm-setting-memory"
-const VMM_GRPC_TRANSPORT_ROUTE_NAME = "vmm-setting-grpc-transport"
-const VMM_SETTING_COMMAND_VALUE = "plugin.vmm.setting.open"
+const VMM_SETTING_ROUTE_NAME = "vulcan-setting"
+const VMM_PROFILE_CENTER_ROUTE_NAME = "vulcan-setting-profile-center"
+const VMM_PROFILE_BUNDLE_TEST_ROUTE_NAME = "vulcan-setting-profile-bundle-test"
+const VMM_TOOLS_DEBUG_ROUTE_NAME = "vulcan-setting-tools-debug"
+const VMM_LANGUAGE_ROUTE_NAME = "vulcan-setting-language"
+const VMM_MEMORY_ROUTE_NAME = "vulcan-setting-memory"
+const VMM_GRPC_TRANSPORT_ROUTE_NAME = "vulcan-setting-grpc-transport"
+const VMM_SETTING_COMMAND_VALUE = "plugin.vulcan.setting.open"
 /**
  * Slot order used by the mounted VMM setting entry.
  * 挂载式 VMM 设置入口使用的插槽顺序。
@@ -104,6 +104,65 @@ const VMM_SETTING_ENTRY_SLOT_ORDER = 50
  * 即使有的页面带右上角选择器，有的页面没有，也不会再出现面板忽大忽小。
  */
 const VMM_TUI_LEFT_PANE_WIDTH = 38
+
+/**
+ * Shared overlay panel width used by manager and setting dialogs.
+ * 管理面板与设置弹层共用的覆盖层宽度基线。
+ *
+ * We intentionally leave only a narrow outer margin so CRUD-heavy screens
+ * such as User Manager and Project Manager no longer feel cramped in the
+ * middle of the terminal.
+ * 这里刻意只保留很窄的外边距，
+ * 让 USER MANAGER、PROJECT MANAGER 这类偏 CRUD 的页面不再缩在终端正中间。
+ */
+const VMM_TUI_OVERLAY_PANEL_WIDTH = "92%"
+
+/**
+ * Shared overlay panel height used by manager and setting dialogs.
+ * 管理面板与设置弹层共用的覆盖层高度基线。
+ *
+ * A taller shell keeps lists, summaries, and action hints visible together
+ * without forcing the user to constantly page the overlay content.
+ * 更高的面板可以同时容纳列表、状态摘要和动作提示，
+ * 避免用户在控制面板里频繁翻页。
+ */
+const VMM_TUI_OVERLAY_PANEL_HEIGHT = "88%"
+
+/**
+ * Shared header height used by the launcher and modal-like TUI pages.
+ * 启动页与各类类弹层 TUI 页面共用的头部高度基线。
+ *
+ * Narrow terminals were wasting too much vertical space above the first
+ * actionable row, so we intentionally compress the title band to keep the
+ * brand visible without pushing the real content downward.
+ * 窄终端在第一条可操作内容之前浪费了过多垂直空间，
+ * 所以这里刻意压缩标题带高度，在保留品牌识别的同时避免把真实内容继续往下挤。
+ */
+const VMM_TUI_PANEL_HEADER_HEIGHT = 3
+
+/**
+ * Shared vertical padding used by launcher and overlay shells.
+ * 启动页与覆盖层外壳共用的上下内边距基线。
+ *
+ * The panel already has borders and centered headers, so removing the extra
+ * top and bottom padding helps dense terminals show more actionable rows.
+ * 这些面板本身已经有边框和居中的头部，
+ * 因此去掉额外的上下内边距能让紧凑终端显示更多可操作条目。
+ */
+const VMM_TUI_PANEL_VERTICAL_PADDING = 0
+
+/**
+ * Shared outer gap used by launcher and modal shells.
+ * 启动页与类弹层外壳共用的外层间距基线。
+ *
+ * The older one-line gap between every block created a second blank band
+ * below the title. Keeping it at zero lets the filter or main content sit
+ * immediately under the header while inner sections still manage their own spacing.
+ * 旧布局会在每个块之间固定留一行空白，
+ * 导致标题下方又多出一道空带。把它收为零后，过滤框或主体内容会直接贴近头部，
+ * 具体分区内部仍然可以各自管理自己的留白。
+ */
+const VMM_TUI_PANEL_OUTER_GAP = 0
 
 /**
  * Shared color tokens for the VMM TUI windows.
@@ -641,10 +700,10 @@ function cycleConfigScope(current: VmmConfigScope, direction: -1 | 1): VmmConfig
  * 在可用时把当前 session id 透传到 VMM 设置子路由之间。
  *
  * Some setting sub-routes need to return to the active chat context, so this
- * helper preserves the session id when `/vmm-setting` is opened from a concrete
+ * helper preserves the session id when `/vulcan-setting` is opened from a concrete
  * chat session.
  * 部分设置子路由需要回到当前聊天上下文，
- * 因此当 `/vmm-setting` 是从某个具体聊天 session 打开的时，
+ * 因此当 `/vulcan-setting` 是从某个具体聊天 session 打开的时，
  * 这里会继续透传这个 session id。
  */
 function buildVmmRouteSessionParams(api: TuiPluginApi) {
@@ -678,8 +737,8 @@ function buildVmmRouteSessionParams(api: TuiPluginApi) {
 }
 
 /**
- * Open the top-level setting-center route.
- * 打开顶层设置中心路由。
+ * Open the top-level control-panel route.
+ * 打开顶层控制面板路由。
  */
 function openVmmSettingScreen(api: TuiPluginApi) {
   writeVmmTuiLog("vmm.tui.setting.open", {
@@ -689,8 +748,8 @@ function openVmmSettingScreen(api: TuiPluginApi) {
 }
 
 /**
- * Shared single-line mounted action for the VMM setting center.
- * 挂载到宿主导航区域里的 VMM 设置中心单行动作入口。
+ * Shared single-line mounted action for the Vulcan control panel.
+ * 挂载到宿主导航区域里的 Vulcan 控制面板单行动作入口。
  *
  * The user asked for a much quieter treatment than the earlier card/button
  * style, so this component deliberately renders as one plain navigation line
@@ -3073,8 +3132,8 @@ function buildVmmSettingHomeStatusLine(
 }
 
 /**
- * Top-level VMM setting-center route styled after the OpenTUI launcher page.
- * 参照 OpenTUI 主入口样式构建的顶层 VMM 设置中心路由。
+ * Top-level Vulcan control-panel route styled after the OpenTUI launcher page.
+ * 参照 OpenTUI 主入口样式构建的顶层 Vulcan 控制面板路由。
  *
  * This route intentionally behaves like an application launcher: a fixed title,
  * one always-active filter line, and a single command list that supports both
@@ -3363,11 +3422,11 @@ const VmmSettingScreen = (props: { api: TuiPluginApi }) => {
         height="100%"
         backgroundColor={VMM_TUI_COLOR_SURFACE}
         flexDirection="column"
-        paddingTop={1}
-        paddingBottom={1}
+        paddingTop={VMM_TUI_PANEL_VERTICAL_PADDING}
+        paddingBottom={VMM_TUI_PANEL_VERTICAL_PADDING}
         paddingLeft={1}
         paddingRight={1}
-        gap={1}
+        gap={VMM_TUI_PANEL_OUTER_GAP}
         onMouseUp={(event) => {
           if (event.button !== 2) return
           event.stopPropagation()
@@ -3383,13 +3442,13 @@ const VmmSettingScreen = (props: { api: TuiPluginApi }) => {
          */}
         <box
           width="100%"
-          height={5}
+          height={VMM_TUI_PANEL_HEADER_HEIGHT}
           backgroundColor="transparent"
           flexDirection="column"
           justifyContent="center"
           alignItems="center"
         >
-          <ascii_font text="VMM OPENCODE PLUGIN" font="tiny" color="#ffffff" backgroundColor="transparent" />
+          <ascii_font text="VULCAN PLUGINS" font="tiny" color="#ffffff" backgroundColor="transparent" />
         </box>
         {/**
          * Render the filter line as an always-active text field so users can
@@ -3441,7 +3500,7 @@ const VmmSettingScreen = (props: { api: TuiPluginApi }) => {
           backgroundColor="transparent"
           flexDirection="column"
           padding={1}
-          gap={1}
+          gap={VMM_TUI_PANEL_OUTER_GAP}
         >
           <select
             ref={selectRef}
@@ -3570,6 +3629,11 @@ export {
   VMM_GRPC_TRANSPORT_ROUTE_NAME,
   VMM_SETTING_COMMAND_VALUE,
   VMM_TUI_LEFT_PANE_WIDTH,
+  VMM_TUI_OVERLAY_PANEL_WIDTH,
+  VMM_TUI_OVERLAY_PANEL_HEIGHT,
+  VMM_TUI_PANEL_HEADER_HEIGHT,
+  VMM_TUI_PANEL_VERTICAL_PADDING,
+  VMM_TUI_PANEL_OUTER_GAP,
   VMM_TUI_COLOR_SURFACE,
   VMM_TUI_COLOR_BORDER,
   VMM_TUI_COLOR_TITLE,
@@ -3662,8 +3726,8 @@ export type {
 }
 
 /**
- * Register the setting-center routes and the single slash command entry.
- * 注册设置中心路由和唯一的 slash 命令入口。
+ * Register the control-panel routes and the single slash command entry.
+ * 注册控制面板路由和唯一的 slash 命令入口。
  */
 const tui: TuiPlugin = async (api) => {
   const startupConfig = await loadVmmConfig(api.state.path.directory)
@@ -3706,9 +3770,9 @@ const tui: TuiPlugin = async (api) => {
       title: commandMetadata.title,
       value: VMM_SETTING_COMMAND_VALUE,
       description: commandMetadata.description,
-      category: "VMM",
+      category: "VULCAN",
       slash: {
-        name: "vmm-setting",
+        name: "vulcan-setting",
       },
       onSelect: () => {
         api.ui.dialog.clear()
@@ -3740,3 +3804,4 @@ const plugin: TuiPluginModule & { id: string } = {
 }
 
 export default plugin
+
